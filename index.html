@@ -4,13 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/css/myStyle.css">
     <title>PortFolio1</title>
+    <link rel="stylesheet" href="./style/css/myStyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+    <div class="sidebar">
+        <h2>APOLLO</h2>
+        <ul>
+            <li class="active">Dashboard</li>
+            <li>Transactions</li>
+            <li>Payments</li>
+            <li>Cards</li>
+            <li>Credit</li>
+            <li>Accounts</li>
+        </ul>
 
+        <!-- Dark Mode Toggle -->
+        <div class="theme-toggle">
+            <label class="switch">
+                <input type="checkbox" id="themeSwitch">
+                <span class="slider round"></span>
+            </label>
+            <span id="themeLabel">Light Mode</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <input type="text" placeholder="Search for anything...">
+            <button class="move-money">Move Money</button>
+        </header>
+
+        <div class="dashboard">
+            <div class="card welcome">
+                <h3>Welcome back, Mara! 👋</h3>
+                <p>Everything seems up-to-date. Would you like to fund your account?</p>
+                <button>Fund my Account</button>
+            </div>
+            <div class="card balance">
+                <h3>Account Balance</h3>
+                <p>$9,543.12</p>
+                <canvas id="balanceChart"></canvas>
+            </div>
+            <div class="card expenses">
+                <h3>Money Out Last 30 Days</h3>
+                <p>$0.00</p>
+            </div>
+            <div class="card income">
+                <h3>Money In Last 30 Days</h3>
+                <p>$0.00</p>
+            </div>
+            <div class="card transactions">
+                <h3>Recent Transactions</h3>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Merchant</th>
+                        <th>Amount</th>
+                    </tr>
+                    <!-- <tr>
+                        <td>Sep 26</td>
+                        <td>Victoria's Treats</td>
+                        <td>$52.14</td>
+                    </tr> -->
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./js/myScript.js"></script>
 </body>
-<script type="module" src="./js/myScript.js"></script>
 
 </html>

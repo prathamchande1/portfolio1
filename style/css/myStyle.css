@@ -1,0 +1,152 @@
+/* Global Styles */
+:root {
+    --black: black;
+    --bg-gray: #f4f4f8;
+    --white: #fff;
+    --orange: #df4c26;
+    --color: #3a3a3a;
+    --color-3: #404040;
+    --blue: #002060;
+    --color-2: #fff0;
+    --white-2: white;
+    --black-2: black;
+    --f9: #f9f9f9;
+    --color-4: #f8f8f8;
+    --quote: #ff7734;
+    font-family: Poppins, sans-serif;
+}
+
+body {
+    background: var(--bg-gray);
+    color: var(--color);
+    display: flex;
+    margin: 0;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: var(--white);
+    padding: 20px;
+    height: 100vh;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    color: var(--blue);
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    cursor: pointer;
+}
+
+.sidebar ul li.active {
+    background: var(--quote);
+    color: var(--white);
+    border-radius: 5px;
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button.move-money {
+    background: var(--quote);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme Toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-4);
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--quote);
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background: var(--black-2);
+    color: var(--white-2);
+}
+
+body.dark-mode .sidebar {
+    background: var(--color-3);
+}
+
+body.dark-mode .card {
+    background: var(--color-3);
+}
+
+
+
+canvas {
+    width: 100% !important;
+    height: 250px !important;
+}
