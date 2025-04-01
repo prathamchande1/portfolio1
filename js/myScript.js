@@ -106,3 +106,30 @@ document.addEventListener( "DOMContentLoaded", function () {
 } );
 
 
+// Sample data for ROI calculation over different time periods
+const roiData = {
+    ytd: { roi: 5, date: '2025-04-01' }, // Year-to-Date ROI
+    "1y": { roi: 12, date: '2024-04-01' }, // 1-year ROI
+    "5y": { roi: 50, date: '2020-04-01' }, // 5-year ROI
+};
+
+// Function to update ROI based on selected time period
+function updateROI() {
+    const timePeriod = document.getElementById( 'timePeriod' ).value;
+    const roiInfo = roiData[timePeriod];
+
+    // Ensure roiInfo exists before trying to update the UI
+    if ( roiInfo ) {
+        // Update ROI percentage and date on the page
+        document.getElementById( 'roiValue' ).textContent = roiInfo.roi + '%';
+        document.getElementById( 'roiDate' ).textContent = roiInfo.date;
+
+        // Update the progress bar width based on ROI percentage
+        const progressBar = document.getElementById( 'roiProgress' );
+        progressBar.style.width = roiInfo.roi + '%';
+    }
+}
+
+// Call updateROI() to display the initial value (YTD)
+document.getElementById( 'timePeriod' ).addEventListener( 'change', updateROI );
+updateROI(); // Initialize with default value

@@ -84,6 +84,49 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- ROI Section -->
+            <div class="card roi">
+                <h3>Return on Investment (ROI)</h3>
+                <div class="roi-container">
+                    <!-- ROI Details -->
+                    <div class="roi-details">
+                        <p class="roi-value" id="roiValue">0%</p>
+                        <p class="roi-description">as of <span id="roiDate">2025-04-01</span></p>
+                    </div>
+
+                    <!-- Time Period Selection -->
+                    <div class="roi-time-period">
+                        <label for="timePeriod">Select Time Period:</label>
+                        <select id="timePeriod" onchange="updateROI()">
+                            <option value="ytd">YTD</option>
+                            <option value="1y">1 Year</option>
+                            <option value="5y">5 Years</option>
+                        </select>
+                    </div>
+
+                    <!-- Progress Bar Section (for Visual Representation of ROI) -->
+                    <div class="roi-progress-bar">
+                        <label for="progress">ROI Progress:</label>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="roiProgress"></div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Description about ROI -->
+                    <div class="roi-info">
+                        <p>ROI (Return on Investment) represents the gain or loss generated on an investment relative to
+                            its initial cost. It is a crucial metric used to evaluate the profitability and efficiency
+                            of an investment. The ROI is calculated as:</p>
+                        <p class="formula"><strong>ROI = (Current Value - Initial Value) / Initial Value * 100%</strong>
+                        </p>
+                        <p>ROI helps investors make informed decisions and track the performance of their investments
+                            over time.</p>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
         <script type="module" src="./js/myScript.js"></script>

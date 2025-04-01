@@ -353,3 +353,93 @@ canvas {
         padding-left: 10px;
     }
 }
+
+
+
+/* ROI Card Styles */
+.card.roi {
+    background-color: var(--card-bg-light);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card.roi h3 {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.roi-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.roi-details {
+    margin-bottom: 20px;
+}
+
+.roi-value {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.roi-description {
+    color: var(--secondary-color3);
+}
+
+.roi-time-period {
+    margin-bottom: 20px;
+}
+
+.roi-time-period label {
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.roi-time-period select {
+    padding: 5px 10px;
+    font-size: 1rem;
+    border: 1px solid var(--secondary-color2);
+    border-radius: 5px;
+}
+
+.roi-progress-bar {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 20px;
+}
+
+.progress-bar {
+    width: 0%; /* Will be dynamically updated */
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.roi-info {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-top: 20px;
+}
+
+.roi-info p {
+    margin: 5px 0;
+}
+
+.roi-info .formula {
+    background-color: var(--bg-light);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
