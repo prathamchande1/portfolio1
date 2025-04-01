@@ -183,6 +183,7 @@ img {
 }
 .mainBody.dark-mode .main-section .main-content .allCardWrap .card {
   background: var(--darkNew);
+  border: 1px solid #12273d;
 }
 .mainBody.dark-mode .main-section .main-content .allCardWrap .card p {
   color: var(--text-light);
@@ -232,7 +233,7 @@ img {
   background: var(--secondary-color2);
 }
 .mainBody .sidebar {
-  width: 220px;
+  width: 300px;
   height: 100vh;
   background-color: var(--lightNew);
   padding: 20px;
@@ -241,6 +242,11 @@ img {
   top: 0;
   left: 0;
   transition: 0.3s;
+}
+@media screen and (max-width: 768px) {
+  .mainBody .sidebar {
+    display: none;
+  }
 }
 .mainBody .sidebar .logo img {
   filter: invert(1);
@@ -265,7 +271,7 @@ img {
   color: var(--secondary-color4);
 }
 .mainBody .main-section {
-  margin-left: 220px;
+  margin-left: 300px;
   margin-bottom: 80px;
 }
 @media screen and (max-width: 768px) {
@@ -355,7 +361,7 @@ img {
   border-radius: 25px;
   background: transparent;
   color: var(--text-light);
-  font-size: 16px;
+  font-size: var(--font16);
 }
 .mainBody .main-section header .rightSide .search-container input::placeholder {
   color: var(--pc-placeHolderColor);
@@ -411,6 +417,7 @@ img {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: 0.3s;
   overflow: hidden;
+  border: 1px solid #dfdfdf;
 }
 .mainBody .main-section .main-content .allCardWrap .card h3 {
   font-size: 18px;
@@ -431,6 +438,7 @@ img {
   transition: 0.3s;
   background: var(--secondary-color4);
   font-size: var(--font16);
+  margin: 24px 0;
 }
 .mainBody .main-section .main-content .allCardWrap button:hover {
   background: var(--secondary-color2);
