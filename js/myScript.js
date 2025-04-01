@@ -32,7 +32,7 @@ document.addEventListener( "DOMContentLoaded", function () {
         const closeAlert = document.getElementById( "closeAlert" );
 
         alertMessage.innerText = message;
-        alertBox.style.display = "block";
+        alertBox.style.display = "flex";
 
         closeAlert.addEventListener( "click", function () {
             alertBox.style.display = "none";
@@ -138,13 +138,57 @@ document.addEventListener( "DOMContentLoaded", function () {
     updateNetIncome(); // Initialize with default value (Previous Month)
 
 
-    document.getElementById( "hamburger" ).addEventListener( "click", function () {
-        document.getElementById( "sidebar" ).style.display = "block"; // Show sidebar
+    // document.getElementById( "hamburger" ).addEventListener( "click", function () {
+    //     document.getElementById( "sidebar" ).style.display = "block"; // Show sidebar
+    // } );
+
+    // document.getElementById( "closeSideBar" ).addEventListener( "click", function () {
+    //     document.getElementById( "sidebar" ).style.display = "none"; // Hide sidebar
+    // } );
+
+    document.querySelectorAll( ".tab" ).forEach( tab => {
+        tab.addEventListener( "click", function () {
+            // Remove activeTab class from all tabs
+            document.querySelectorAll( ".tab" ).forEach( t => t.classList.remove( "activeTab" ) );
+
+            // Add activeTab class to the clicked tab
+            this.classList.add( "activeTab" );
+
+            // Get the corresponding content ID
+            const tabId = this.id.replace( "tab", "" ); // Extract number from tab ID
+            const contentId = ["accounts_main", "cards_main", "dashboard_main", "settings_main", "profile_main"];
+
+            // Hide all content sections
+            contentId.forEach( id => document.getElementById( id ).style.display = "none" );
+
+            // Show the corresponding section
+            document.getElementById( contentId[tabId - 1] ).style.display = "block";
+        } );
     } );
 
-    document.getElementById( "closeSideBar" ).addEventListener( "click", function () {
-        document.getElementById( "sidebar" ).style.display = "none"; // Hide sidebar
+
+
+
+    document.querySelectorAll( ".sideTab" ).forEach( tab => {
+        tab.addEventListener( "click", function () {
+            // Remove activeTab class from all tabs
+            document.querySelectorAll( ".sideTab" ).forEach( t => t.classList.remove( "activeX" ) );
+
+            // Add activeTab class to the clicked tab
+            this.classList.add( "activeX" );
+
+            // Get the corresponding content ID
+            const tabId = this.id.replace( "sideTab", "" ); // Extract number from tab ID
+            const contentId = ["accounts_main", "cards_main", "dashboard_main", "settings_main", "profile_main"];
+
+            // Hide all content sections
+            contentId.forEach( id => document.getElementById( id ).style.display = "none" );
+
+            // Show the corresponding section
+            document.getElementById( contentId[tabId - 1] ).style.display = "block";
+        } );
     } );
+
 
 
     // Function to determine the user's risk profile based on their answers
