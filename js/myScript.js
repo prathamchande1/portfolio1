@@ -419,6 +419,46 @@ updateROI(); // Initialize with default value
 
 
 
+document.getElementById( 'calculateTaxButton' ).addEventListener( 'click', function () {
+    const grossIncome = parseFloat( document.getElementById( 'grossIncome' ).value );
+    const deductions = parseFloat( document.getElementById( 'deductions' ).value );
+
+    if ( isNaN( grossIncome ) || isNaN( deductions ) ) {
+        alert( "Please enter valid income and deductions values." );
+        return;
+    }
+
+    const taxableIncome = grossIncome - deductions;
+
+    let taxLiability = 0;
+
+    // Tax Slabs for FY 2025-26
+    if ( taxableIncome <= 400000 ) {
+        taxLiability = 0;
+    } else if ( taxableIncome <= 800000 ) {
+        taxLiability = ( taxableIncome - 400000 ) * 0.05;
+    } else if ( taxableIncome <= 1200000 ) {
+        taxLiability = 400000 * 0.05 + ( taxableIncome - 800000 ) * 0.1;
+    } else if ( taxableIncome <= 1600000 ) {
+        taxLiability = 400000 * 0.05 + 400000 * 0.1 + ( taxableIncome - 1200000 ) * 0.15;
+    } else if ( taxableIncome <= 2000000 ) {
+        taxLiability = 400000 * 0.05 + 400000 * 0.1 + 400000 * 0.15 + ( taxableIncome - 1600000 ) * 0.2;
+    } else if ( taxableIncome <= 2400000 ) {
+        taxLiability = 400000 * 0.05 + 400000 * 0.1 + 400000 * 0.15 + 400000 * 0.2 + ( taxableIncome - 2000000 ) * 0.25;
+    } else {
+        taxLiability = 400000 * 0.05 + 400000 * 0.1 + 400000 * 0.15 + 400000 * 0.2 + 400000 * 0.25 + ( taxableIncome - 2400000 ) * 0.3;
+    }
+
+    // Display results
+    document.getElementById( 'taxableIncome' ).textContent = taxableIncome.toFixed( 2 );
+    document.getElementById( 'taxLiability' ).textContent = taxLiability.toFixed( 2 );
+
+    const taxSaved = grossIncome > 4000000 ? ( grossIncome - 4000000 ) * 0.1 : 0; // Example tax-saving scenario for income > ₹40 lakh
+    document.getElementById( 'taxSaved' ).textContent = taxSaved.toFixed( 2 );
+
+    // Show results
+    document.getElementById( 'taxResult' ).style.display = 'block';
+} );
 
 
 // Expense Data for Categories
