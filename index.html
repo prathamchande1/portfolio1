@@ -3,16 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport"
+        content="width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
     <title>PortFolio1</title>
     <link rel="stylesheet" href="./style/css/myStyle.css">
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body class="mainBody">
     <div class="sidebar" id="sidebar">
-        <h2>PRATHAM</h2>
+        <div id="closeSideBar">X</div>
+        <div class="logo"><img src="./assets/img/logo.svg" alt=""></div>
         <ul>
             <li id="dashboard" class="activeX">Dashboard</li>
             <li id="transactions">Transactions</li>
@@ -21,7 +23,6 @@
             <li id="credit">Credit</li>
             <li id="accounts">Accounts</li>
         </ul>
-
         <!-- Dark Mode Toggle -->
         <div class="theme-toggle">
             <label class="switch">
@@ -31,9 +32,6 @@
             <span id="themeLabel">Light Mode</span>
         </div>
     </div>
-
-
-
     <div class="main-content">
         <header>
             <!-- Hamburger Menu Icon -->
@@ -41,29 +39,25 @@
                 &#9776;
             </div>
             <div class="search-container">
-
                 <input type="text" id="searchInput" placeholder="Search..." />
                 <button id="searchButton">
-                    <i class="fas   fa-search "></i>
+                    <img src="./assets/img/search.svg" alt="">
                 </button>
             </div>
-
-
         </header>
-
         <div class="dashboard">
             <div id="alertBox" class="alert-box">
                 <p id="alertMessage"></p>
                 <button id="closeAlert">OK</button>
             </div>
-
             <div class="card welcome">
                 <h3>Welcome back, Mara! 👋</h3>
+                <p id="lastLogin">Last Login: <span></span></p>
+                <p id="currentDateTime">Current Date & Time: <span></span></p>
+                <p id="currentBalance">Current Saving Balance: <span>$5000.00</span></p> <!-- Example balance -->
                 <p>Everything seems up-to-date. Would you like to fund your account?</p>
                 <button id="fundAccountBtn">Fund my Account</button>
             </div>
-
-
             <!-- Asset Allocation Section -->
             <div class="card asset-allocation">
                 <h3>Asset Allocation</h3>
@@ -85,7 +79,6 @@
                     </ul>
                 </div>
             </div>
-
             <!-- ROI Section -->
             <div class="card roi">
                 <h3>Return on Investment (ROI)</h3>
@@ -95,7 +88,6 @@
                         <p class="roi-value" id="roiValue">0%</p>
                         <p class="roi-description">as of <span id="roiDate">2025-04-01</span></p>
                     </div>
-
                     <!-- Time Period Selection -->
                     <div class="roi-time-period">
                         <label for="timePeriod">Select Time Period:</label>
@@ -105,7 +97,6 @@
                             <option value="5y">5 Years</option>
                         </select>
                     </div>
-
                     <!-- Progress Bar Section (for Visual Representation of ROI) -->
                     <div class="roi-progress-bar">
                         <label for="progress">ROI Progress:</label>
@@ -113,7 +104,6 @@
                             <div class="progress-bar" id="roiProgress"></div>
                         </div>
                     </div>
-
                     <!-- Additional Description about ROI -->
                     <div class="roi-info">
                         <p>ROI (Return on Investment) represents the gain or loss generated on an investment relative to
@@ -126,15 +116,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-            <div class="chart-container">
-                <canvas id="assetAllocationChart"></canvas>
-            </div>
-
-
             <!-- income block  -->
             <div class="card net-income">
                 <h3>Net Income</h3>
@@ -144,7 +125,6 @@
                         <p class="net-income-value" id="netIncomeValue">$0</p>
                         <p class="net-income-description">as of <span id="netIncomeDate">2025-04-01</span></p>
                     </div>
-
                     <!-- Comparison to Previous Period -->
                     <div class="net-income-comparison">
                         <label for="comparisonPeriod">Compare to:</label>
@@ -154,7 +134,6 @@
                         </select>
                         <p class="comparison-result" id="comparisonResult">+ $0 (0%)</p>
                     </div>
-
                     <!-- Additional Description of Net Income -->
                     <div class="net-income-info">
                         <p>Net income is the total profit of a company after subtracting all expenses, taxes, and costs.
@@ -162,10 +141,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
             <div class="card expense-breakdown">
                 <h3>Expense Breakdown</h3>
                 <div class="expense-container">
@@ -188,11 +163,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
             <div class="card top-performing-assets">
                 <h3>Top Performing Assets</h3>
                 <table id="assetsTable">
@@ -209,17 +179,6 @@
                     </tbody>
                 </table>
             </div>
-
-
-
-
-
-
-
-
-
-
-
             <!-- Placeholder for the dynamically generated risk assessment form -->
             <div class="card risk-assessment">
                 <h3>Risk Assessment</h3>
@@ -229,7 +188,6 @@
                             <h4 id="profileHeading">Please answer the questions to get your profile.</h4>
                         </div>
                         <h4>Answer these questions to determine your investment profile:</h4>
-
                         <label for="investmentHorizon">What is your investment horizon?</label>
                         <div>
                             <input type="checkbox" id="shortTerm" value="short">
@@ -243,7 +201,6 @@
                             <input type="checkbox" id="longTerm" value="long">
                             <label for="longTerm">More than 5 years</label>
                         </div>
-
                         <label for="riskTolerance">How would you describe your risk tolerance?</label>
                         <div>
                             <input type="checkbox" id="lowRisk" value="low">
@@ -257,7 +214,6 @@
                             <input type="checkbox" id="highRisk" value="high">
                             <label for="highRisk">High</label>
                         </div>
-
                         <label for="returnExpectation">What return do you expect from your investments?</label>
                         <div>
                             <input type="checkbox" id="lowReturn" value="low">
@@ -271,34 +227,18 @@
                             <input type="checkbox" id="highReturn" value="high">
                             <label for="highReturn">Above 10%</label>
                         </div>
-
                         <button id="submitBtn">Submit</button>
                     </div>
-
-
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-            <div class="container">
+            <div class="card ">
                 <div id="predictionHeading"></div>
                 <h2>Filter Expenses and Stock Performance</h2>
-
                 <label for="startDate">Start Date: </label>
                 <input type="date" id="startDate">
-
                 <label for="endDate">End Date: </label>
                 <input type="date" id="endDate">
-
                 <button id="filterButton">Filter</button>
-
                 <div id="result">
                     <p><strong>Profit or Loss:</strong> <span id="profitLossData">Please select a date range.</span></p>
                     <p><strong>Expenses:</strong> <span id="expensesMoneyData">Please select a date range.</span></p>
@@ -307,48 +247,147 @@
                     <p><strong>Total Assets:</strong> <span id="totalAssetsData">Please select a date range.</span></p>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-            <div class="container">
+            <div class="card ">
                 <h2>Income Tax Calculator for FY 2025-26</h2>
-
                 <label for="grossIncome">Enter Gross Income (₹): </label>
                 <input type="number" id="grossIncome" placeholder="Enter your income" required>
-
                 <label for="deductions">Enter Deductions (₹): </label>
                 <input type="number" id="deductions" placeholder="Enter deductions" required>
-
                 <button id="calculateTaxButton">Calculate Tax</button>
-
                 <div id="taxResult">
                     <p><strong>Your Taxable Income:</strong> ₹<span id="taxableIncome"></span></p>
                     <p><strong>Your Tax Liability:</strong> ₹<span id="taxLiability"></span></p>
                     <p><strong>Tax Saved (if applicable):</strong> ₹<span id="taxSaved"></span></p>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
+            <div class="card">
+                <h3>ACCOUNT BALANCE</h3>
+                <p class="balance">$ 9,543.12</p>
+                <p class="change">▲ $149.32 Today, Sep 25</p>
+                <canvas id="balanceChart"></canvas>
+            </div>
+            <div class="card  transaction-card">
+                <div class="transaction-header">
+                    <h3>RECENT TRANSACTIONS</h3>
+                    <span class="view-all">View all →</span>
+                </div>
+                <ul class="transaction-list">
+                    <li class="transaction-item">
+                        <div>
+                            <span class="transaction-date">Sep 26, 2022</span><br>
+                            <span class="transaction-name">Victoria's Treats</span>
+                        </div>
+                        <span class="transaction-amount">- $52.14</span>
+                        <span class="transaction-status processing">Processing</span>
+                    </li>
+                    <li class="transaction-item">
+                        <div>
+                            <span class="transaction-date">Sep 24, 2022</span><br>
+                            <span class="transaction-name">Morgan Seis, LLC</span>
+                        </div>
+                        <span class="transaction-amount">- $428.47</span>
+                        <span class="transaction-status complete">Complete</span>
+                    </li>
+                    <li class="transaction-item">
+                        <div>
+                            <span class="transaction-date">Sep 24, 2022</span><br>
+                            <span class="transaction-name">Walmart</span>
+                        </div>
+                        <span class="transaction-amount">- $112.23</span>
+                        <span class="transaction-status in-progress">In Progress</span>
+                    </li>
+                    <li class="transaction-item">
+                        <div>
+                            <span class="transaction-date">Sep 21, 2022</span><br>
+                            <span class="transaction-name">John Rowland</span>
+                        </div>
+                        <span class="transaction-amount">- $950.00</span>
+                        <span class="transaction-status cancelled">Cancelled</span>
+                    </li>
+                    <li class="transaction-item">
+                        <div>
+                            <span class="transaction-date">Sep 18, 2022</span><br>
+                            <span class="transaction-name">Game's Store</span>
+                        </div>
+                        <span class="transaction-amount">- $89.49</span>
+                        <span class="transaction-status complete">Complete</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="card  stock-card">
+                <div class="stock-header">
+                    <h3>Recent Stock Orders</h3>
+                    <span class="view-all">View All</span>
+                </div>
+                <table class="stock-table">
+                    <thead>
+                        <tr>
+                            <th>ORDER ID</th>
+                            <th>CUSTOMER</th>
+                            <th>STOCK LEVEL</th>
+                            <th>DATE</th>
+                            <th>PRODUCTS</th>
+                            <th>STATUS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>O-4561</td>
+                            <td class="stock-row">
+                                <img src="avatar1.jpg" alt="Helen Miller" class="avatar">
+                                Helen Miller
+                            </td>
+                            <td>
+                                <div class="stock-progress" data-value="42%"></div>
+                            </td>
+                            <td>Mar 14, 2022</td>
+                            <td class="stock-icons">
+                                <img src="product1.jpg" alt="">
+                                <img src="product2.jpg" alt="">
+                                <img src="product3.jpg" alt="">
+                            </td>
+                            <td><span class="status in-stock">In Stock</span></td>
+                            <td><button class="details-btn">Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>S-05498</td>
+                            <td class="stock-row">
+                                <img src="avatar2.jpg" alt="Tom Willter" class="avatar">
+                                Tom Willter
+                            </td>
+                            <td>
+                                <div class="stock-progress" data-value="61%"></div>
+                            </td>
+                            <td>Mar 18, 2022</td>
+                            <td class="stock-icons">
+                                <img src="product4.jpg" alt="">
+                            </td>
+                            <td><span class="status low-stock">Low Stock</span></td>
+                            <td><button class="details-btn">Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>S-78565</td>
+                            <td class="stock-row">
+                                <img src="avatar3.jpg" alt="Christina Chu" class="avatar">
+                                Christina Chu
+                            </td>
+                            <td>
+                                <div class="stock-progress" data-value="27%"></div>
+                            </td>
+                            <td>Mar 21, 2022</td>
+                            <td class="stock-icons">
+                                <img src="product5.jpg" alt="">
+                                <img src="product6.jpg" alt="">
+                            </td>
+                            <td><span class="status has-issues">Has Issues</span></td>
+                            <td><button class="details-btn">Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
         <script type="module" src="./js/myScript.js"></script>
-
 </body>
 
 </html>

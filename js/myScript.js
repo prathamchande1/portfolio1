@@ -101,33 +101,6 @@ document.addEventListener( "DOMContentLoaded", function () {
     } );
 
 
-    var ctx = document.getElementById( 'assetAllocationChart' ).getContext( '2d' );
-    const assetAllocationChart = new Chart( ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Stocks', 'Bonds', 'Real Estate', 'Gold', 'Mutual Funds'],
-            datasets: [{
-                label: 'Asset Allocation',
-                data: [40, 20, 15, 10, 15],
-                backgroundColor: '#FF5733',
-                borderColor: '#fff',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                x: { // Use this for histogram binning
-                    type: 'category',
-                    labels: ['Stocks', 'Bonds', 'Real Estate', 'Gold', 'Mutual Funds']
-                },
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    } );
-
 
 
 
@@ -165,9 +138,13 @@ document.addEventListener( "DOMContentLoaded", function () {
     updateNetIncome(); // Initialize with default value (Previous Month)
 
 
+    document.getElementById( "hamburger" ).addEventListener( "click", function () {
+        document.getElementById( "sidebar" ).style.display = "block"; // Show sidebar
+    } );
 
-
-
+    document.getElementById( "closeSideBar" ).addEventListener( "click", function () {
+        document.getElementById( "sidebar" ).style.display = "none"; // Hide sidebar
+    } );
 
 
     // Function to determine the user's risk profile based on their answers
@@ -374,6 +351,26 @@ document.addEventListener( "DOMContentLoaded", function () {
         return totalAssets.toFixed( 2 ) + "Lakh"; // Round to 2 decimal places
     }
 
+
+
+
+    const progressElements = document.querySelectorAll( ".stock-progress" );
+
+    progressElements.forEach( ( element ) => {
+        let progressValue = parseInt( element.getAttribute( "data-value" ) );
+        let circle = document.createElement( "div" );
+
+        circle.style.width = "100%";
+        circle.style.height = "100%";
+        circle.style.borderRadius = "50%";
+        circle.style.border = "3px solid white";
+        circle.style.position = "absolute";
+        circle.style.clipPath = `polygon(50% 50%, 100% 0, 100% 100%, 50% 50%)`;
+        circle.style.transform = `rotate(${( progressValue / 100 ) * 360}deg)`;
+
+        element.appendChild( circle );
+        element.innerHTML += `<span>${progressValue}%</span>`;
+    } );
 
 
     //end here
@@ -601,3 +598,96 @@ populateAssetsTable();
 
 
 
+const ctxp = document.getElementById( 'balanceChart' ).getContext( '2d' );
+
+const gradient = ctxp.createLinearGradient( 0, 0, 0, 400 );
+gradient.addColorStop( 0, 'rgba(123, 104, 238, 0.5)' ); // Light Purple
+gradient.addColorStop( 1, 'rgba(255, 255, 255, 0)' );  // Fade to white
+
+new Chart( ctxp, {
+    type: 'line',
+    data: {
+        labels: ["20 SEP", "21 SEP", "22 SEP", "23 SEP", "24 SEP", "25 SEP"],
+        datasets: [{
+            label: "Balance Trend",
+            data: [8500, 8700, 8600, 8900, 9100, 9543], // Sample balance values
+            backgroundColor: gradient,
+            borderColor: "#7B68EE",
+            borderWidth: 2,
+            pointRadius: 3,
+            pointBackgroundColor: "#7B68EE",
+            fill: true,
+            tension: 0.4 // Smooth curve
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                grid: { display: false }
+            },
+            y: {
+                grid: { color: "rgba(0,0,0,0.1)" },
+                ticks: { callback: value => `$${value}` }
+            }
+        },
+        plugins: {
+            legend: { display: false }
+        }
+    }
+} );
+
+
+
+
+
+// Example Usage
+document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
+    showAlert( "Funding feature coming soon!" );
+} );
+
+// Function to get and display current date and time
+function displayDateTime() {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString( 'en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    } );
+    const formattedTime = currentDate.toLocaleTimeString( 'en-US' );
+    document.getElementById( "currentDateTime" ).querySelector( "span" ).textContent = `${formattedDate}, ${formattedTime}`;
+}
+
+// Function to get and display last login time
+function displayLastLogin() {
+    // Example: You could save the last login in localStorage or fetch from the server
+    const lastLogin = localStorage.getItem( 'lastLogin' );
+    if ( lastLogin ) {
+        document.getElementById( "lastLogin" ).querySelector( "span" ).textContent = lastLogin;
+    } else {
+        document.getElementById( "lastLogin" ).querySelector( "span" ).textContent = "First time login";
+    }
+}
+
+// Function to fetch and display current balance
+function displayBalance() {
+    // Example: Assuming balance is stored somewhere, for now, we use a static value
+    const currentBalance = 5000.00; // You can replace this with dynamic data from your API
+    document.getElementById( "currentBalance" ).querySelector( "span" ).textContent = `$${currentBalance.toFixed( 2 )}`;
+}
+
+// Display all information when page loads
+window.onload = function () {
+    displayDateTime();
+    displayLastLogin();
+    displayBalance();
+    // Update last login time on each login
+    localStorage.setItem( 'lastLogin', new Date().toLocaleString() );
+};
+
+// Alert function example
+function showAlert( message ) {
+    alert( message ); // Simple alert for demonstration
+}
