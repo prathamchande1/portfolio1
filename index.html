@@ -8,16 +8,26 @@
         content="width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
     <title>PortFolio1</title>
     <link rel="stylesheet" href="./style/css/myStyle.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+
+    <!-- Resources -->
+    <!-- <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script> -->
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
 </head>
 
 <body class="mainBody">
+    <!-- ----------------------------       --------------------------------------- -->
+
     <div id="alertBox" class="alert-box">
         <div class="alertWrap">
             <p id="alertMessage"></p>
             <button id="closeAlert">OK</button>
         </div>
     </div>
+    <!-- ----------------------------       --------------------------------------- -->
     <div class="sidebar" id="sidebar">
         <!-- <div id="closeSideBar">X</div> -->
         <div class="logo"><img src="./assets/img/logo.svg" alt=""></div>
@@ -59,17 +69,35 @@
 
         <div id="dashboard_main" class="main-content dashboard">
             <div class="allCardWrap">
+                <!-- ----------------------------   accountBalance    --------------------------------------- -->
 
+                <div class="card accountBalance">
+                    <h3>PortFolio</h3>
+                    <p class="balance">₹ 9,543.12</p>
+                    <p class="change">▲ ₹149.32 Today, <span id="todayDate"></span></p>
+
+                </div>
+
+
+                <!-- ----------------------------  welcome     --------------------------------------- -->
 
                 <div class="card welcome">
                     <h3>Welcome back, Mara! 👋</h3>
                     <p id="lastLogin">Last Login: <span></span></p>
                     <p id="currentDateTime">Current Date & Time: <span></span></p>
-                    <p id="currentBalance">Current Saving Balance: <span>$5000.00</span></p> <!-- Example balance -->
+                    <p id="currentBalance">Current Saving Balance: <span>$5000.00</span></p>
+                    <!-- Example balance -->
                     <p>Everything seems up-to-date. Would you like to fund your account?</p>
                     <button id="fundAccountBtn">Fund my Account</button>
                 </div>
-                <!-- Asset Allocation Section -->
+
+
+
+
+
+
+                <!-- ----------------------------    Asset Allocation Section   --------------------------------------- -->
+
                 <div class="card asset-allocation">
                     <h3>Asset Allocation</h3>
                     <div class="chart-container">
@@ -77,15 +105,19 @@
                     </div>
                     <div class="allocation-summary">
                         <ul>
-                            <li><span class="color-box" style="background-color: var(--primary-color);"></span> Stocks -
+                            <li><span class="color-box" style="background-color: var(--primary-color);"></span>
+                                Stocks -
                                 40%
                             </li>
-                            <li><span class="color-box" style="background-color: var(--secondary-color1);"></span> Bonds
+                            <li><span class="color-box" style="background-color: var(--secondary-color1);"></span>
+                                Bonds
                                 -
                                 20%</li>
-                            <li><span class="color-box" style="background-color: var(--secondary-color2);"></span> Real
+                            <li><span class="color-box" style="background-color: var(--secondary-color2);"></span>
+                                Real
                                 Estate - 15%</li>
-                            <li><span class="color-box" style="background-color: var(--secondary-color3);"></span> Gold
+                            <li><span class="color-box" style="background-color: var(--secondary-color3);"></span>
+                                Gold
                                 -
                                 10%</li>
                             <li><span class="color-box" style="background-color: var(--secondary-color4);"></span>
@@ -94,6 +126,11 @@
                         </ul>
                     </div>
                 </div>
+
+
+
+                <!-- ----------------------------    roi   --------------------------------------- -->
+
                 <!-- ROI Section -->
                 <div class="card roi">
                     <h3>Return on Investment (ROI)</h3>
@@ -135,6 +172,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- ----------------------------    net-income   --------------------------------------- -->
+
                 <!-- income block  -->
                 <div class="card net-income">
                     <h3>Net Income</h3>
@@ -155,12 +194,16 @@
                         </div>
                         <!-- Additional Description of Net Income -->
                         <div class="net-income-info">
-                            <p>Net income is the total profit of a company after subtracting all expenses, taxes, and
+                            <p>Net income is the total profit of a company after subtracting all expenses, taxes,
+                                and
                                 costs.
                                 It is an important indicator of a company's profitability and financial health.</p>
                         </div>
                     </div>
                 </div>
+
+                <!-- ----------------------------    card expense-breakdown   --------------------------------------- -->
+
                 <div class="card expense-breakdown">
                     <h3>Expense Breakdown</h3>
                     <div class="expense-container">
@@ -176,7 +219,8 @@
                                 <li><span class="expense-label" style="background-color: #f39c12;"></span> Salaries:
                                     $20,000
                                 </li>
-                                <li><span class="expense-label" style="background-color: #2ecc71;"></span> Research &
+                                <li><span class="expense-label" style="background-color: #2ecc71;"></span> Research
+                                    &
                                     Development: $8,000</li>
                                 <li><span class="expense-label" style="background-color: #9b59b6;"></span>
                                     Miscellaneous:
@@ -185,6 +229,9 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- ----------------------------    top-performing-assets   --------------------------------------- -->
+
                 <div class="card top-performing-assets">
                     <h3>Top Performing Assets</h3>
                     <table id="assetsTable">
@@ -201,7 +248,8 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Placeholder for the dynamically generated risk assessment form -->
+
+                <!-- ----------------------------    risk-assessment   --------------------------------------- -->
                 <div class="card risk-assessment">
                     <h3>Risk Assessment</h3>
                     <div class="risk-container">
@@ -253,7 +301,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card ">
+
+
+                <!-- ---------------------------- Filter Expenses and  Stock Performance    --------------------------------------- -->
+
+                <div class="card stockPerfomance">
                     <div id="predictionHeading"></div>
                     <h2>Filter Expenses and Stock Performance</h2>
                     <label for="startDate">Start Date: </label>
@@ -262,18 +314,26 @@
                     <input type="date" id="endDate">
                     <button id="filterButton">Filter</button>
                     <div id="result">
-                        <p><strong>Profit or Loss:</strong> <span id="profitLossData">Please select a date range.</span>
+                        <p><strong>Profit or Loss:</strong> <span id="profitLossData">Please select a date
+                                range.</span>
                         </p>
-                        <p><strong>Expenses:</strong> <span id="expensesMoneyData">Please select a date range.</span>
+                        <p><strong>Expenses:</strong> <span id="expensesMoneyData">Please select a date
+                                range.</span>
                         </p>
-                        <p><strong>Income:</strong> <span id="incomeMoneyData">Please select a date range.</span></p>
-                        <p><strong>Stock Performance:</strong> <span id="stockData">Please select a date range.</span>
+                        <p><strong>Income:</strong> <span id="incomeMoneyData">Please select a date range.</span>
                         </p>
-                        <p><strong>Total Assets:</strong> <span id="totalAssetsData">Please select a date range.</span>
+                        <p><strong>Stock Performance:</strong> <span id="stockData">Please select a date
+                                range.</span>
+                        </p>
+                        <p><strong>Total Assets:</strong> <span id="totalAssetsData">Please select a date
+                                range.</span>
                         </p>
                     </div>
                 </div>
-                <div class="card ">
+
+                <!-- ----------------------------    taxCalculator   --------------------------------------- -->
+
+                <div class="card taxCalculator">
                     <h2>Income Tax Calculator for FY 2025-26</h2>
                     <label for="grossIncome">Enter Gross Income (₹): </label>
                     <input type="number" id="grossIncome" placeholder="Enter your income" required>
@@ -286,12 +346,16 @@
                         <p><strong>Tax Saved (if applicable):</strong> ₹<span id="taxSaved"></span></p>
                     </div>
                 </div>
-                <div class="card">
-                    <h3>ACCOUNT BALANCE</h3>
-                    <p class="balance">$ 9,543.12</p>
-                    <p class="change">▲ $149.32 Today, Sep 25</p>
-                    <canvas id="balanceChart"></canvas>
-                </div>
+
+
+
+
+
+
+
+
+                <!-- ----------------------------     transaction-card   --------------------------------------- -->
+
                 <div class="card  transaction-card">
                     <div class="transaction-header">
                         <h3>RECENT TRANSACTIONS</h3>
@@ -340,6 +404,7 @@
                         </li>
                     </ul>
                 </div>
+                <!-- ----------------------------    stock-card    --------------------------------------- -->
                 <div class="card  stock-card">
                     <div class="stock-header">
                         <h3>Recent Stock Orders</h3>
@@ -412,10 +477,14 @@
                         </tbody>
                     </table>
                 </div>
+
+
+                <!-- ----------------------------       --------------------------------------- -->
+
             </div>
         </div>
 
-        <!-- //block for tab -->
+        <!--------------------------- Extra block for tab ----------------------------->
         <div id="accounts_main" class="main-content">
             <div class="wrapCenter">Accounts Content</div>
         </div>
@@ -434,7 +503,8 @@
         <div class="tabWrap">
             <div class="tab" id="tab1"><img src="./assets/img/icon-3.svg" alt=""><span>Accounts</span></div>
             <div class="tab" id="tab2"><img src="./assets/img/icon-5.svg" alt=""><span>Cards</span></div>
-            <div class="tab activeTab" id="tab3"><img src="./assets/img/icon-2.svg" alt=""><span>Dashboard</span></div>
+            <div class="tab activeTab" id="tab3"><img src="./assets/img/icon-2.svg" alt=""><span>Dashboard</span>
+            </div>
             <div class="tab" id="tab4"><img src="./assets/img/icon-4.svg" alt=""><span>Settings</span></div>
             <div class="tab" id="tab5"><img src="./assets/img/icon-6.svg" alt=""><span>Profile</span></div>
 

@@ -2,7 +2,18 @@ document.addEventListener( "DOMContentLoaded", function () {
     const themeSwitch = document.getElementById( "themeSwitch" );
     const body = document.body;
 
-    // Load theme from local storage and apply it
+
+    // ==================== Date Display ===================
+    const today = new Date();
+
+    // Format the date as 'MMM DD' (e.g., Sep 25)
+    const options = { month: 'short', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString( 'en-US', options );
+
+    // Insert the date into the span
+    document.getElementById( "todayDate" ).textContent = formattedDate;
+
+    // ==================== Dark Mode Toggle ===================
     function applyTheme( theme ) {
         if ( theme === "enabled" ) {
             body.classList.add( "dark-mode" );
@@ -23,8 +34,7 @@ document.addEventListener( "DOMContentLoaded", function () {
     } );
 
 
-
-    //welocome
+    //=================== Alert Box ===================
 
     function showAlert( message ) {
         const alertBox = document.getElementById( "alertBox" );
@@ -39,19 +49,18 @@ document.addEventListener( "DOMContentLoaded", function () {
         } );
     }
 
-    // Example Usage
-    document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
-        showAlert( "Funding feature coming soon!" );
-    } );
+    // // ==================== fundAccountBtn ===================
+    //     document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
+    //         showAlert( "Funding feature coming soon!" );
+    //     } );
 
 
 
-    //search bar
+    // ==================== Search Functionality ===================
     document.getElementById( "searchButton" ).addEventListener( "click", function () {
         const searchQuery = document.getElementById( "searchInput" ).value.trim();
         if ( searchQuery ) {
             showAlert( `Searching for: ${searchQuery}` );
-            // You can replace this alert with the actual search function
 
             // Clear the input field after the search
             document.getElementById( "searchInput" ).value = '';
@@ -59,50 +68,52 @@ document.addEventListener( "DOMContentLoaded", function () {
     } );
 
 
-    // Asset Allocation Data
-    var ctxp = document.getElementById( 'assetAllocationChartp' ).getContext( '2d' );
-    var assetAllocationChartp = new Chart( ctxp, {
-        type: 'bar',  // Change the type to 'bar'
-        data: {
-            labels: ['Stocks', 'Bonds', 'Real Estate', 'Gold', 'Mutual Funds'],
-            datasets: [{
-                label: 'Asset Allocation',
-                data: [40, 20, 15, 10, 15],  // Data for each category
-                backgroundColor: [
-                    '#DF4C25',      // Stocks
-                    '#ED5920',      // Bonds
-                    '#004F99',      // Real Estate
-                    '#EF9337',      // Gold
-                    '#3C8DE0'       // Mutual Funds
-                ],
-                borderColor: [
-                    '#DF4C25',      // Stocks
-                    '#ED5920',      // Bonds
-                    '#004F99',      // Real Estate
-                    '#EF9337',      // Gold
-                    '#3C8DE0'       // Mutual Funds
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
+
+
+    // ==================== welcome===================
+
+    // Example Usage
+    document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
+        showAlert( "Funding feature coming soon!" );
     } );
 
+    // Function to get and display current date and time
+    function displayDateTime() {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleDateString( 'en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        } );
+        const formattedTime = currentDate.toLocaleTimeString( 'en-US' );
+        document.getElementById( "currentDateTime" ).querySelector( "span" ).textContent = `${formattedDate}, ${formattedTime}`;
+    }
 
+    // Function to get and display last login time
+    function displayLastLogin() {
+        // Example: You could save the last login in localStorage or fetch from the server
+        const lastLogin = localStorage.getItem( 'lastLogin' );
+        if ( lastLogin ) {
+            document.getElementById( "lastLogin" ).querySelector( "span" ).textContent = lastLogin;
+        } else {
+            document.getElementById( "lastLogin" ).querySelector( "span" ).textContent = "First time login";
+        }
+    }
 
+    // Function to fetch and display current balance
+    function displayBalance() {
+        // Example: Assuming balance is stored somewhere, for now, we use a static value
+        const currentBalance = 5000.00; // You can replace this with dynamic data from your API
+        document.getElementById( "currentBalance" ).querySelector( "span" ).textContent = `₹ ${currentBalance.toFixed( 2 )}`;
+    }
+    displayDateTime();
+    displayLastLogin();
+    displayBalance();
+    // Update last login time on each login
+    localStorage.setItem( 'lastLogin', new Date().toLocaleString() );
 
+    // ==================== Net Income Comparison ===================
 
     // Sample data for Net Income for different periods
     const netIncomeData = {
@@ -138,14 +149,9 @@ document.addEventListener( "DOMContentLoaded", function () {
     updateNetIncome(); // Initialize with default value (Previous Month)
 
 
-    // document.getElementById( "hamburger" ).addEventListener( "click", function () {
-    //     document.getElementById( "sidebar" ).style.display = "block"; // Show sidebar
-    // } );
 
-    // document.getElementById( "closeSideBar" ).addEventListener( "click", function () {
-    //     document.getElementById( "sidebar" ).style.display = "none"; // Hide sidebar
-    // } );
 
+    // ==================== Tab Functionality ===================
     document.querySelectorAll( ".tab" ).forEach( tab => {
         tab.addEventListener( "click", function () {
             // Remove activeTab class from all tabs
@@ -167,7 +173,7 @@ document.addEventListener( "DOMContentLoaded", function () {
     } );
 
 
-
+    // ==================== Side Tab Functionality ===================
 
     document.querySelectorAll( ".sideTab" ).forEach( tab => {
         tab.addEventListener( "click", function () {
@@ -190,7 +196,7 @@ document.addEventListener( "DOMContentLoaded", function () {
     } );
 
 
-
+    //=====================  risk profile  ===================
     // Function to determine the user's risk profile based on their answers
     function determineProfile() {
         // Collecting values from the checkboxes
@@ -241,19 +247,14 @@ document.addEventListener( "DOMContentLoaded", function () {
 
         // Updating the profile result section
         document.getElementById( 'profileHeading' ).innerText = profile;
-        // Show the alert with the profile message
         showAlert( profile );
     }
-
-    // // Adding event listeners to checkboxes
-    // const checkboxes = document.querySelectorAll( 'input[type="checkbox"]' );
-    // checkboxes.forEach( checkbox => {
-    //     checkbox.addEventListener( 'change', determineProfile );  // Trigger determineProfile on each checkbox change
-    // } );
 
     // Trigger the profile determination when the user clicks submit
     document.getElementById( 'submitBtn' ).addEventListener( 'click', determineProfile );
 
+
+    // ==================== Filter Expenses and  Stock Performance ===================
     document.getElementById( "filterButton" ).addEventListener( "click", function () {
         const startDate = document.getElementById( "startDate" ).value;
         const endDate = document.getElementById( "endDate" ).value;
@@ -265,7 +266,7 @@ document.addEventListener( "DOMContentLoaded", function () {
             const today = new Date();
 
             if ( start > end ) {
-                alert( "Start date cannot be later than end date." );
+                showAlert( "Start date cannot be later than end date." )
             } else {
                 if ( end > today ) {
                     // If end date is in the future, show predicted values
@@ -276,7 +277,7 @@ document.addEventListener( "DOMContentLoaded", function () {
                 }
             }
         } else {
-            alert( "Please select both start and end dates." );
+            showAlert( "Please select both start and end dates." )
         }
     } );
 
@@ -286,11 +287,11 @@ document.addEventListener( "DOMContentLoaded", function () {
         predictionHeading.innerText = "Showing Future Predictions"; // Set heading for future predictions
 
         // Display dummy prediction data for each category
-        document.getElementById( "profitLossData" ).innerText = "Rs " + generateFuturePrediction( "profitLoss" );
-        document.getElementById( "expensesMoneyData" ).innerText = "Rs " + generateFuturePrediction( "expenses" );
-        document.getElementById( "incomeMoneyData" ).innerText = "Rs " + generateFuturePrediction( "income" );
+        document.getElementById( "profitLossData" ).innerText = "₹ " + generateFuturePrediction( "profitLoss" );
+        document.getElementById( "expensesMoneyData" ).innerText = "₹ " + generateFuturePrediction( "expenses" );
+        document.getElementById( "incomeMoneyData" ).innerText = "₹ " + generateFuturePrediction( "income" );
         document.getElementById( "stockData" ).innerText = generateFuturePrediction( "stock" ) + "%";
-        document.getElementById( "totalAssetsData" ).innerText = "Rs " + generateFuturePrediction( "assets" );
+        document.getElementById( "totalAssetsData" ).innerText = "₹ " + generateFuturePrediction( "assets" );
 
         // Optionally, apply styling for future predictions
         stylePrediction();
@@ -326,16 +327,16 @@ document.addEventListener( "DOMContentLoaded", function () {
 
         // Profit or Loss data
         const filteredProfitLoss = getFilteredProfitLossData( startDate, endDate );
-        document.getElementById( "profitLossData" ).innerText = `Rs ${filteredProfitLoss}`;
+        document.getElementById( "profitLossData" ).innerText = `₹ ${filteredProfitLoss}`;
         styleProfitLoss( filteredProfitLoss );
 
         // Expenses data
         const filteredExpensesMoney = getFilteredExpensesMoney( startDate, endDate );
-        document.getElementById( "expensesMoneyData" ).innerText = `Rs ${filteredExpensesMoney}`;
+        document.getElementById( "expensesMoneyData" ).innerText = `₹ ${filteredExpensesMoney}`;
 
         // Income data
         const filteredIncomeMoney = getFilteredIncomeMoney( startDate, endDate );
-        document.getElementById( "incomeMoneyData" ).innerText = `Rs ${filteredIncomeMoney}`;
+        document.getElementById( "incomeMoneyData" ).innerText = `₹ ${filteredIncomeMoney}`;
 
         // Stock performance data
         const filteredStock = getFilteredStockData( startDate, endDate );
@@ -343,7 +344,7 @@ document.addEventListener( "DOMContentLoaded", function () {
 
         // Total Assets data
         const totalAssets = getTotalAssets( filteredExpensesMoney, filteredIncomeMoney, filteredProfitLoss, filteredStock );
-        document.getElementById( "totalAssetsData" ).innerText = `Rs ${totalAssets}`;
+        document.getElementById( "totalAssetsData" ).innerText = `₹ ${totalAssets}`;
     }
 
     // Dummy data for Profit or Loss (for demonstration purposes)
@@ -398,6 +399,8 @@ document.addEventListener( "DOMContentLoaded", function () {
 
 
 
+    //===================== Stock  card ===================
+
     const progressElements = document.querySelectorAll( ".stock-progress" );
 
     progressElements.forEach( ( element ) => {
@@ -417,6 +420,170 @@ document.addEventListener( "DOMContentLoaded", function () {
     } );
 
 
+
+
+
+
+
+
+
+    // ==================== ROI Calculation ===================
+
+    // Sample data for ROI calculation over different time periods
+    const roiData = {
+        ytd: { roi: 5, date: '2025-04-01' }, // Year-to-Date ROI
+        "1y": { roi: 12, date: '2024-04-01' }, // 1-year ROI
+        "5y": { roi: 50, date: '2020-04-01' }, // 5-year ROI
+    };
+
+    // Function to update ROI based on selected time period
+    function updateROI() {
+        const timePeriod = document.getElementById( 'timePeriod' ).value;
+        const roiInfo = roiData[timePeriod];
+
+        // Ensure roiInfo exists before trying to update the UI
+        if ( roiInfo ) {
+            // Update ROI percentage and date on the page
+            document.getElementById( 'roiValue' ).textContent = roiInfo.roi + '%';
+            document.getElementById( 'roiDate' ).textContent = roiInfo.date;
+
+            // Update the progress bar width based on ROI percentage
+            const progressBar = document.getElementById( 'roiProgress' );
+            progressBar.style.width = roiInfo.roi + '%';
+        }
+    }
+
+    // Call updateROI() to display the initial value (YTD)
+    document.getElementById( 'timePeriod' ).addEventListener( 'change', updateROI );
+    updateROI(); // Initialize with default value
+
+
+
+
+    //===================== Tax Calculation ===================
+    document.getElementById( 'calculateTaxButton' ).addEventListener( 'click', function () {
+        const grossIncome = parseFloat( document.getElementById( 'grossIncome' ).value );
+        const deductions = parseFloat( document.getElementById( 'deductions' ).value );
+
+        if ( isNaN( grossIncome ) || isNaN( deductions ) ) {
+            showAlert( "Please enter valid income and deductions values." );
+            return;
+        }
+
+        const taxableIncome = grossIncome - deductions;
+
+        let taxLiability = 0;
+
+        // Tax Slabs for FY 2025-26
+        if ( taxableIncome <= 400000 ) {
+            taxLiability = 0;
+        } else if ( taxableIncome <= 800000 ) {
+            taxLiability = ( taxableIncome - 400000 ) * 0.05;
+        } else if ( taxableIncome <= 1200000 ) {
+            taxLiability = 400000 * 0.05 + ( taxableIncome - 800000 ) * 0.1;
+        } else if ( taxableIncome <= 1600000 ) {
+            taxLiability = 400000 * 0.05 + 400000 * 0.1 + ( taxableIncome - 1200000 ) * 0.15;
+        } else if ( taxableIncome <= 2000000 ) {
+            taxLiability = 400000 * 0.05 + 400000 * 0.1 + 400000 * 0.15 + ( taxableIncome - 1600000 ) * 0.2;
+        } else if ( taxableIncome <= 2400000 ) {
+            taxLiability = 400000 * 0.05 + 400000 * 0.1 + 400000 * 0.15 + 400000 * 0.2 + ( taxableIncome - 2000000 ) * 0.25;
+        } else {
+            taxLiability = 400000 * 0.05 + 400000 * 0.1 + 400000 * 0.15 + 400000 * 0.2 + 400000 * 0.25 + ( taxableIncome - 2400000 ) * 0.3;
+        }
+
+        // Display results
+        document.getElementById( 'taxableIncome' ).textContent = taxableIncome.toFixed( 2 );
+        document.getElementById( 'taxLiability' ).textContent = taxLiability.toFixed( 2 );
+
+        const taxSaved = grossIncome > 4000000 ? ( grossIncome - 4000000 ) * 0.1 : 0; // Example tax-saving scenario for income > ₹40 lakh
+        document.getElementById( 'taxSaved' ).textContent = taxSaved.toFixed( 2 );
+
+        // Show results
+        document.getElementById( 'taxResult' ).style.display = 'block';
+    } );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //====================== Top Performing Assets ===================
+    // Example Data for Top Performing Assets
+    const assetsData = [
+        { name: "Tesla", category: "Stock", returnPercent: 120.5, value: 150000 },
+        { name: "Bitcoin", category: "Cryptocurrency", returnPercent: 300.3, value: 500000 },
+        { name: "Apple", category: "Stock", returnPercent: 45.2, value: 250000 },
+        { name: "Gold", category: "Commodity", returnPercent: 10.8, value: 200000 },
+        { name: "Amazon", category: "Stock", returnPercent: 60.7, value: 180000 },
+        { name: "S&P 500 ETF", category: "Index Fund", returnPercent: 18.5, value: 120000 },
+        { name: "Real Estate - NYC Property", category: "Real Estate", returnPercent: 25.1, value: 700000 },
+    ];
+
+    // Function to populate the table with the data
+    function populateAssetsTable() {
+        const tableBody = document.querySelector( "#assetsTable tbody" );
+        tableBody.innerHTML = ""; // Clear the table body before adding new rows
+
+        assetsData.forEach( asset => {
+            const row = document.createElement( "tr" );
+
+            // Add Asset Name
+            const nameCell = document.createElement( "td" );
+            nameCell.textContent = asset.name;
+            row.appendChild( nameCell );
+
+            // Add Asset Category
+            const categoryCell = document.createElement( "td" );
+            categoryCell.textContent = asset.category;
+            row.appendChild( categoryCell );
+
+            // Add Return Percentage with color coding
+            const returnCell = document.createElement( "td" );
+            returnCell.textContent = `${asset.returnPercent}%`;
+            returnCell.classList.add( asset.returnPercent > 0 ? "high-return" : "low-return" );
+            row.appendChild( returnCell );
+
+            // Add Asset Value
+            const valueCell = document.createElement( "td" );
+            valueCell.textContent = `₹ ${asset.value.toLocaleString()}`;
+            row.appendChild( valueCell );
+
+            tableBody.appendChild( row );
+        } );
+    }
+
+    // Call the function to populate the table
+    populateAssetsTable();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //end here
 } );
 
@@ -428,310 +595,4 @@ document.addEventListener( "DOMContentLoaded", function () {
 
 
 
-// Sample data for ROI calculation over different time periods
-const roiData = {
-    ytd: { roi: 5, date: '2025-04-01' }, // Year-to-Date ROI
-    "1y": { roi: 12, date: '2024-04-01' }, // 1-year ROI
-    "5y": { roi: 50, date: '2020-04-01' }, // 5-year ROI
-};
 
-// Function to update ROI based on selected time period
-function updateROI() {
-    const timePeriod = document.getElementById( 'timePeriod' ).value;
-    const roiInfo = roiData[timePeriod];
-
-    // Ensure roiInfo exists before trying to update the UI
-    if ( roiInfo ) {
-        // Update ROI percentage and date on the page
-        document.getElementById( 'roiValue' ).textContent = roiInfo.roi + '%';
-        document.getElementById( 'roiDate' ).textContent = roiInfo.date;
-
-        // Update the progress bar width based on ROI percentage
-        const progressBar = document.getElementById( 'roiProgress' );
-        progressBar.style.width = roiInfo.roi + '%';
-    }
-}
-
-// Call updateROI() to display the initial value (YTD)
-document.getElementById( 'timePeriod' ).addEventListener( 'change', updateROI );
-updateROI(); // Initialize with default value
-
-
-
-
-
-document.getElementById( 'calculateTaxButton' ).addEventListener( 'click', function () {
-    const grossIncome = parseFloat( document.getElementById( 'grossIncome' ).value );
-    const deductions = parseFloat( document.getElementById( 'deductions' ).value );
-
-    if ( isNaN( grossIncome ) || isNaN( deductions ) ) {
-        alert( "Please enter valid income and deductions values." );
-        return;
-    }
-
-    const taxableIncome = grossIncome - deductions;
-
-    let taxLiability = 0;
-
-    // Tax Slabs for FY 2025-26
-    if ( taxableIncome <= 400000 ) {
-        taxLiability = 0;
-    } else if ( taxableIncome <= 800000 ) {
-        taxLiability = ( taxableIncome - 400000 ) * 0.05;
-    } else if ( taxableIncome <= 1200000 ) {
-        taxLiability = 400000 * 0.05 + ( taxableIncome - 800000 ) * 0.1;
-    } else if ( taxableIncome <= 1600000 ) {
-        taxLiability = 400000 * 0.05 + 400000 * 0.1 + ( taxableIncome - 1200000 ) * 0.15;
-    } else if ( taxableIncome <= 2000000 ) {
-        taxLiability = 400000 * 0.05 + 400000 * 0.1 + 400000 * 0.15 + ( taxableIncome - 1600000 ) * 0.2;
-    } else if ( taxableIncome <= 2400000 ) {
-        taxLiability = 400000 * 0.05 + 400000 * 0.1 + 400000 * 0.15 + 400000 * 0.2 + ( taxableIncome - 2000000 ) * 0.25;
-    } else {
-        taxLiability = 400000 * 0.05 + 400000 * 0.1 + 400000 * 0.15 + 400000 * 0.2 + 400000 * 0.25 + ( taxableIncome - 2400000 ) * 0.3;
-    }
-
-    // Display results
-    document.getElementById( 'taxableIncome' ).textContent = taxableIncome.toFixed( 2 );
-    document.getElementById( 'taxLiability' ).textContent = taxLiability.toFixed( 2 );
-
-    const taxSaved = grossIncome > 4000000 ? ( grossIncome - 4000000 ) * 0.1 : 0; // Example tax-saving scenario for income > ₹40 lakh
-    document.getElementById( 'taxSaved' ).textContent = taxSaved.toFixed( 2 );
-
-    // Show results
-    document.getElementById( 'taxResult' ).style.display = 'block';
-} );
-
-
-// Expense Data for Categories
-const expenseData = {
-    labels: ["Operating Expenses", "Marketing Expenses", "Salaries", "R&D", "Miscellaneous"],
-    datasets: [{
-        label: "Expenses",
-        data: [10000, 5000, 20000, 8000, 2000], // Expense values
-        backgroundColor: [
-            '#3498db', // Operating Expenses
-            '#e74c3c', // Marketing Expenses
-            '#f39c12', // Salaries
-            '#2ecc71', // Research & Development
-            '#9b59b6', // Miscellaneous
-        ],
-        borderColor: [
-            '#2980b9', '#c0392b', '#f1c40f', '#27ae60', '#8e44ad'
-        ],
-        borderWidth: 1
-    }]
-};
-
-// Create the Expense Breakdown Chart using Chart.js
-const ctx = document.getElementById( 'expenseChart' ).getContext( '2d' );
-const expenseChart = new Chart( ctx, {
-    type: 'pie', // Pie chart type for the expense breakdown
-    data: expenseData,
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-                labels: {
-                    font: {
-                        size: 14
-                    }
-                }
-            },
-            tooltip: {
-                callbacks: {
-                    label: function ( tooltipItem ) {
-                        let dataset = tooltipItem.dataset;
-                        let value = dataset.data[tooltipItem.dataIndex];
-                        return `${tooltipItem.label}: $${value.toLocaleString()}`;
-                    }
-                }
-            }
-        },
-        maintainAspectRatio: false
-    }
-} );
-
-// Additional functionality for showing expense list and chart update
-function updateExpenseChart() {
-    // Add logic here if you want to update the chart dynamically based on new data.
-}
-
-// Initialize the chart
-updateExpenseChart();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Example Data for Top Performing Assets
-const assetsData = [
-    { name: "Tesla", category: "Stock", returnPercent: 120.5, value: 150000 },
-    { name: "Bitcoin", category: "Cryptocurrency", returnPercent: 300.3, value: 500000 },
-    { name: "Apple", category: "Stock", returnPercent: 45.2, value: 250000 },
-    { name: "Gold", category: "Commodity", returnPercent: 10.8, value: 200000 },
-    { name: "Amazon", category: "Stock", returnPercent: 60.7, value: 180000 },
-    { name: "S&P 500 ETF", category: "Index Fund", returnPercent: 18.5, value: 120000 },
-    { name: "Real Estate - NYC Property", category: "Real Estate", returnPercent: 25.1, value: 700000 },
-];
-
-// Function to populate the table with the data
-function populateAssetsTable() {
-    const tableBody = document.querySelector( "#assetsTable tbody" );
-    tableBody.innerHTML = ""; // Clear the table body before adding new rows
-
-    assetsData.forEach( asset => {
-        const row = document.createElement( "tr" );
-
-        // Add Asset Name
-        const nameCell = document.createElement( "td" );
-        nameCell.textContent = asset.name;
-        row.appendChild( nameCell );
-
-        // Add Asset Category
-        const categoryCell = document.createElement( "td" );
-        categoryCell.textContent = asset.category;
-        row.appendChild( categoryCell );
-
-        // Add Return Percentage with color coding
-        const returnCell = document.createElement( "td" );
-        returnCell.textContent = `${asset.returnPercent}%`;
-        returnCell.classList.add( asset.returnPercent > 0 ? "high-return" : "low-return" );
-        row.appendChild( returnCell );
-
-        // Add Asset Value
-        const valueCell = document.createElement( "td" );
-        valueCell.textContent = `Rs ${asset.value.toLocaleString()}`;
-        row.appendChild( valueCell );
-
-        tableBody.appendChild( row );
-    } );
-}
-
-// Call the function to populate the table
-populateAssetsTable();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const ctxp = document.getElementById( 'balanceChart' ).getContext( '2d' );
-
-const gradient = ctxp.createLinearGradient( 0, 0, 0, 400 );
-gradient.addColorStop( 0, 'rgba(123, 104, 238, 0.5)' ); // Light Purple
-gradient.addColorStop( 1, 'rgba(255, 255, 255, 0)' );  // Fade to white
-
-new Chart( ctxp, {
-    type: 'line',
-    data: {
-        labels: ["20 SEP", "21 SEP", "22 SEP", "23 SEP", "24 SEP", "25 SEP"],
-        datasets: [{
-            label: "Balance Trend",
-            data: [8500, 8700, 8600, 8900, 9100, 9543], // Sample balance values
-            backgroundColor: gradient,
-            borderColor: "#7B68EE",
-            borderWidth: 2,
-            pointRadius: 3,
-            pointBackgroundColor: "#7B68EE",
-            fill: true,
-            tension: 0.4 // Smooth curve
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            x: {
-                grid: { display: false }
-            },
-            y: {
-                grid: { color: "rgba(0,0,0,0.1)" },
-                ticks: { callback: value => `$${value}` }
-            }
-        },
-        plugins: {
-            legend: { display: false }
-        }
-    }
-} );
-
-
-
-
-
-// Example Usage
-document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
-    showAlert( "Funding feature coming soon!" );
-} );
-
-// Function to get and display current date and time
-function displayDateTime() {
-    const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleDateString( 'en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    } );
-    const formattedTime = currentDate.toLocaleTimeString( 'en-US' );
-    document.getElementById( "currentDateTime" ).querySelector( "span" ).textContent = `${formattedDate}, ${formattedTime}`;
-}
-
-// Function to get and display last login time
-function displayLastLogin() {
-    // Example: You could save the last login in localStorage or fetch from the server
-    const lastLogin = localStorage.getItem( 'lastLogin' );
-    if ( lastLogin ) {
-        document.getElementById( "lastLogin" ).querySelector( "span" ).textContent = lastLogin;
-    } else {
-        document.getElementById( "lastLogin" ).querySelector( "span" ).textContent = "First time login";
-    }
-}
-
-// Function to fetch and display current balance
-function displayBalance() {
-    // Example: Assuming balance is stored somewhere, for now, we use a static value
-    const currentBalance = 5000.00; // You can replace this with dynamic data from your API
-    document.getElementById( "currentBalance" ).querySelector( "span" ).textContent = `$${currentBalance.toFixed( 2 )}`;
-}
-
-// Display all information when page loads
-window.onload = function () {
-    displayDateTime();
-    displayLastLogin();
-    displayBalance();
-    // Update last login time on each login
-    localStorage.setItem( 'lastLogin', new Date().toLocaleString() );
-};
-
-// Alert function example
-function showAlert( message ) {
-    alert( message ); // Simple alert for demonstration
-}
