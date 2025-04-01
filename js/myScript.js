@@ -233,6 +233,147 @@ document.addEventListener( "DOMContentLoaded", function () {
     // Trigger the profile determination when the user clicks submit
     document.getElementById( 'submitBtn' ).addEventListener( 'click', determineProfile );
 
+    document.getElementById( "filterButton" ).addEventListener( "click", function () {
+        const startDate = document.getElementById( "startDate" ).value;
+        const endDate = document.getElementById( "endDate" ).value;
+
+        if ( startDate && endDate ) {
+            // Parse the start and end dates
+            const start = new Date( startDate );
+            const end = new Date( endDate );
+            const today = new Date();
+
+            if ( start > end ) {
+                alert( "Start date cannot be later than end date." );
+            } else {
+                if ( end > today ) {
+                    // If end date is in the future, show predicted values
+                    showFuturePrediction();
+                } else {
+                    // Otherwise, show filtered data
+                    filterData( start, end );
+                }
+            }
+        } else {
+            alert( "Please select both start and end dates." );
+        }
+    } );
+
+    function showFuturePrediction() {
+        // Display the "Future Predictions" heading
+        const predictionHeading = document.getElementById( "predictionHeading" );
+        predictionHeading.innerText = "Showing Future Predictions"; // Set heading for future predictions
+
+        // Display dummy prediction data for each category
+        document.getElementById( "profitLossData" ).innerText = "Rs " + generateFuturePrediction( "profitLoss" );
+        document.getElementById( "expensesMoneyData" ).innerText = "Rs " + generateFuturePrediction( "expenses" );
+        document.getElementById( "incomeMoneyData" ).innerText = "Rs " + generateFuturePrediction( "income" );
+        document.getElementById( "stockData" ).innerText = generateFuturePrediction( "stock" ) + "%";
+        document.getElementById( "totalAssetsData" ).innerText = "Rs " + generateFuturePrediction( "assets" );
+
+        // Optionally, apply styling for future predictions
+        stylePrediction();
+    }
+
+    function generateFuturePrediction( type ) {
+        // Generate future prediction data (dummy values for now)
+        switch ( type ) {
+            case "profitLoss":
+                return ( Math.floor( Math.random() * 5000 ) + 1000 ); // Example: future prediction for profit/loss
+            case "expenses":
+                return Math.floor( Math.random() * 2000 ) + 100; // Example: future prediction for expenses
+            case "income":
+                return Math.floor( Math.random() * 5000 ) + 2000; // Example: future prediction for income
+            case "stock":
+                return ( Math.random() * 20 - 10 ).toFixed( 2 ); // Example: random future stock performance between -10% and +10%
+            case "assets":
+                return ( Math.floor( Math.random() * 10000 ) + 5000 ).toFixed( 2 ); // Example: future assets
+            default:
+                return 0;
+        }
+    }
+
+    function stylePrediction() {
+        const profitLossElement = document.getElementById( "profitLossData" );
+        profitLossElement.style.color = "blue"; // Set color for future prediction to blue
+    }
+
+    // Function to filter data based on selected dates
+    function filterData( startDate, endDate ) {
+        // Example logic for filtering data based on selected dates
+        // Replace with actual API calls or logic to filter profit/loss, expenses, income, and stock data
+
+        // Profit or Loss data
+        const filteredProfitLoss = getFilteredProfitLossData( startDate, endDate );
+        document.getElementById( "profitLossData" ).innerText = `Rs ${filteredProfitLoss}`;
+        styleProfitLoss( filteredProfitLoss );
+
+        // Expenses data
+        const filteredExpensesMoney = getFilteredExpensesMoney( startDate, endDate );
+        document.getElementById( "expensesMoneyData" ).innerText = `Rs ${filteredExpensesMoney}`;
+
+        // Income data
+        const filteredIncomeMoney = getFilteredIncomeMoney( startDate, endDate );
+        document.getElementById( "incomeMoneyData" ).innerText = `Rs ${filteredIncomeMoney}`;
+
+        // Stock performance data
+        const filteredStock = getFilteredStockData( startDate, endDate );
+        document.getElementById( "stockData" ).innerText = `${filteredStock}%`;
+
+        // Total Assets data
+        const totalAssets = getTotalAssets( filteredExpensesMoney, filteredIncomeMoney, filteredProfitLoss, filteredStock );
+        document.getElementById( "totalAssetsData" ).innerText = `Rs ${totalAssets}`;
+    }
+
+    // Dummy data for Profit or Loss (for demonstration purposes)
+    function getFilteredProfitLossData( startDate, endDate ) {
+        // Replace with actual logic to calculate profit or loss based on the date range
+        const profitLoss = Math.floor( Math.random() * 5000 ) - 2000; // Example: random profit or loss between -2000 and +5000
+        return profitLoss;
+    }
+
+    // Dummy data for Expenses (for demonstration purposes)
+    function getFilteredExpensesMoney( startDate, endDate ) {
+        // Replace with actual filtering logic based on date range
+        const expenses = Math.floor( Math.random() * 3000 ) + 100; // Example: random expenses between 100 and 3000
+        return expenses;
+    }
+
+    // Dummy data for Income (for demonstration purposes)
+    function getFilteredIncomeMoney( startDate, endDate ) {
+        // Replace with actual filtering logic based on date range
+        const income = Math.floor( Math.random() * 5000 ) + 1000; // Example: random income between 1000 and 5000
+        return income;
+    }
+
+    // Dummy data for Stock Performance (for demonstration purposes)
+    function getFilteredStockData( startDate, endDate ) {
+        // Replace with actual filtering logic based on date range
+        const stockPerformance = ( Math.random() * 20 - 10 ).toFixed( 2 ); // Example: random stock performance between -10% and +10%
+        return stockPerformance;
+    }
+
+    // Function to apply styling for Profit or Loss
+    function styleProfitLoss( profitLoss ) {
+        const profitLossElement = document.getElementById( "profitLossData" );
+
+        if ( profitLoss >= 0 ) {
+            // If profit or positive, set text color to green
+            profitLossElement.style.color = "green";
+        } else {
+            // If loss or negative, set text color to red
+            profitLossElement.style.color = "red";
+        }
+    }
+
+    // Calculate Total Assets (example logic)
+    function getTotalAssets( expenses, income, profitLoss, stockPerformance ) {
+        // Example calculation for total assets
+        const stockPerformanceFactor = ( parseFloat( stockPerformance ) / 100 ) * income; // Apply stock performance to income
+        const totalAssets = income - expenses + profitLoss + stockPerformanceFactor; // Total assets formula
+        return totalAssets.toFixed( 2 ) + "Lakh"; // Round to 2 decimal places
+    }
+
 
 
     //end here
@@ -400,6 +541,18 @@ function populateAssetsTable() {
 
 // Call the function to populate the table
 populateAssetsTable();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

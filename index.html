@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PortFolio1</title>
     <link rel="stylesheet" href="./style/css/myStyle.css">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -275,6 +276,35 @@
                     </div>
 
 
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="container">
+                <div id="predictionHeading"></div>
+                <h2>Filter Expenses and Stock Performance</h2>
+
+                <label for="startDate">Start Date: </label>
+                <input type="date" id="startDate">
+
+                <label for="endDate">End Date: </label>
+                <input type="date" id="endDate">
+
+                <button id="filterButton">Filter</button>
+
+                <div id="result">
+                    <p><strong>Profit or Loss:</strong> <span id="profitLossData">Please select a date range.</span></p>
+                    <p><strong>Expenses:</strong> <span id="expensesMoneyData">Please select a date range.</span></p>
+                    <p><strong>Income:</strong> <span id="incomeMoneyData">Please select a date range.</span></p>
+                    <p><strong>Stock Performance:</strong> <span id="stockData">Please select a date range.</span></p>
+                    <p><strong>Total Assets:</strong> <span id="totalAssetsData">Please select a date range.</span></p>
                 </div>
             </div>
 
