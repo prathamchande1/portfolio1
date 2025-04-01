@@ -67,7 +67,7 @@
             <div class="card asset-allocation">
                 <h3>Asset Allocation</h3>
                 <div class="chart-container">
-                    <canvas id="assetAllocationChart"></canvas>
+                    <canvas id="assetAllocationChartp"></canvas>
                 </div>
                 <div class="allocation-summary">
                     <ul>
@@ -122,6 +122,68 @@
                         </p>
                         <p>ROI helps investors make informed decisions and track the performance of their investments
                             over time.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="chart-container">
+                <canvas id="assetAllocationChart"></canvas>
+            </div>
+
+
+            <!-- income block  -->
+            <div class="card net-income">
+                <h3>Net Income</h3>
+                <div class="net-income-container">
+                    <!-- Net Income Details -->
+                    <div class="net-income-details">
+                        <p class="net-income-value" id="netIncomeValue">$0</p>
+                        <p class="net-income-description">as of <span id="netIncomeDate">2025-04-01</span></p>
+                    </div>
+
+                    <!-- Comparison to Previous Period -->
+                    <div class="net-income-comparison">
+                        <label for="comparisonPeriod">Compare to:</label>
+                        <select id="comparisonPeriod" onchange="updateNetIncome()">
+                            <option value="previousMonth">Previous Month</option>
+                            <option value="previousYear">Previous Year</option>
+                        </select>
+                        <p class="comparison-result" id="comparisonResult">+ $0 (0%)</p>
+                    </div>
+
+                    <!-- Additional Description of Net Income -->
+                    <div class="net-income-info">
+                        <p>Net income is the total profit of a company after subtracting all expenses, taxes, and costs.
+                            It is an important indicator of a company's profitability and financial health.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="card expense-breakdown">
+                <h3>Expense Breakdown</h3>
+                <div class="expense-container">
+                    <div class="expense-chart">
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                    <div class="expense-details">
+                        <ul id="expenseList">
+                            <li><span class="expense-label" style="background-color: #3498db;"></span> Operating
+                                Expenses: $10,000</li>
+                            <li><span class="expense-label" style="background-color: #e74c3c;"></span> Marketing
+                                Expenses: $5,000</li>
+                            <li><span class="expense-label" style="background-color: #f39c12;"></span> Salaries: $20,000
+                            </li>
+                            <li><span class="expense-label" style="background-color: #2ecc71;"></span> Research &
+                                Development: $8,000</li>
+                            <li><span class="expense-label" style="background-color: #9b59b6;"></span> Miscellaneous:
+                                $2,000</li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -60,8 +60,8 @@ document.addEventListener( "DOMContentLoaded", function () {
 
 
     // Asset Allocation Data
-    var ctx = document.getElementById( 'assetAllocationChart' ).getContext( '2d' );
-    var assetAllocationChart = new Chart( ctx, {
+    var ctxp = document.getElementById( 'assetAllocationChartp' ).getContext( '2d' );
+    var assetAllocationChartp = new Chart( ctxp, {
         type: 'bar',  // Change the type to 'bar'
         data: {
             labels: ['Stocks', 'Bonds', 'Real Estate', 'Gold', 'Mutual Funds'],
@@ -101,6 +101,69 @@ document.addEventListener( "DOMContentLoaded", function () {
     } );
 
 
+    var ctx = document.getElementById( 'assetAllocationChart' ).getContext( '2d' );
+    const assetAllocationChart = new Chart( ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Stocks', 'Bonds', 'Real Estate', 'Gold', 'Mutual Funds'],
+            datasets: [{
+                label: 'Asset Allocation',
+                data: [40, 20, 15, 10, 15],
+                backgroundColor: '#FF5733',
+                borderColor: '#fff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: { // Use this for histogram binning
+                    type: 'category',
+                    labels: ['Stocks', 'Bonds', 'Real Estate', 'Gold', 'Mutual Funds']
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    } );
+
+
+
+
+    // Sample data for Net Income for different periods
+    const netIncomeData = {
+        current: 10000,          // Current month's net income (e.g., April 2025)
+        previousMonth: 9500,     // Net income from the previous month
+        previousYear: 120000,    // Net income from the previous year
+    };
+
+    // Function to update the Net Income and Comparison based on selected period
+    function updateNetIncome() {
+        const comparisonPeriod = document.getElementById( 'comparisonPeriod' ).value;
+        const currentNetIncome = netIncomeData.current;
+        const comparisonNetIncome = netIncomeData[comparisonPeriod];
+
+        // Update Net Income value and date
+        document.getElementById( 'netIncomeValue' ).textContent = '$' + currentNetIncome.toLocaleString();
+        document.getElementById( 'netIncomeDate' ).textContent = 'April 2025';
+
+        // Calculate the difference and percentage change
+        const difference = currentNetIncome - comparisonNetIncome;
+        const percentageChange = ( ( difference / comparisonNetIncome ) * 100 ).toFixed( 2 );
+
+        // Display the comparison result
+        let comparisonText = `+ $${difference.toLocaleString()} (${percentageChange}%)`;
+        if ( difference < 0 ) {
+            comparisonText = `- $${Math.abs( difference ).toLocaleString()} (${Math.abs( percentageChange )}%)`;
+        }
+        document.getElementById( 'comparisonResult' ).textContent = comparisonText;
+    }
+
+    // Call updateNetIncome() to initialize with the default selection
+    document.getElementById( 'comparisonPeriod' ).addEventListener( 'change', updateNetIncome );
+    updateNetIncome(); // Initialize with default value (Previous Month)
+
 
     //end here
 } );
@@ -133,3 +196,67 @@ function updateROI() {
 // Call updateROI() to display the initial value (YTD)
 document.getElementById( 'timePeriod' ).addEventListener( 'change', updateROI );
 updateROI(); // Initialize with default value
+
+
+
+
+
+
+
+// Expense Data for Categories
+const expenseData = {
+    labels: ["Operating Expenses", "Marketing Expenses", "Salaries", "R&D", "Miscellaneous"],
+    datasets: [{
+        label: "Expenses",
+        data: [10000, 5000, 20000, 8000, 2000], // Expense values
+        backgroundColor: [
+            '#3498db', // Operating Expenses
+            '#e74c3c', // Marketing Expenses
+            '#f39c12', // Salaries
+            '#2ecc71', // Research & Development
+            '#9b59b6', // Miscellaneous
+        ],
+        borderColor: [
+            '#2980b9', '#c0392b', '#f1c40f', '#27ae60', '#8e44ad'
+        ],
+        borderWidth: 1
+    }]
+};
+
+// Create the Expense Breakdown Chart using Chart.js
+const ctx = document.getElementById( 'expenseChart' ).getContext( '2d' );
+const expenseChart = new Chart( ctx, {
+    type: 'pie', // Pie chart type for the expense breakdown
+    data: expenseData,
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+                labels: {
+                    font: {
+                        size: 14
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function ( tooltipItem ) {
+                        let dataset = tooltipItem.dataset;
+                        let value = dataset.data[tooltipItem.dataIndex];
+                        return `${tooltipItem.label}: $${value.toLocaleString()}`;
+                    }
+                }
+            }
+        },
+        maintainAspectRatio: false
+    }
+} );
+
+// Additional functionality for showing expense list and chart update
+function updateExpenseChart() {
+    // Add logic here if you want to update the chart dynamically based on new data.
+}
+
+// Initialize the chart
+updateExpenseChart();

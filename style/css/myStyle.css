@@ -443,3 +443,140 @@ canvas {
     margin-top: 10px;
     font-family: 'Courier New', Courier, monospace;
 }
+
+
+
+
+
+
+/* Net Income Card Styles */
+.card.net-income {
+    background-color: var(--card-bg-light);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card.net-income h3 {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.net-income-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.net-income-details {
+    margin-bottom: 20px;
+}
+
+.net-income-value {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.net-income-description {
+    color: var(--secondary-color3);
+}
+
+.net-income-comparison {
+    margin-bottom: 20px;
+}
+
+.net-income-comparison label {
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.net-income-comparison select {
+    padding: 5px 10px;
+    font-size: 1rem;
+    border: 1px solid var(--secondary-color2);
+    border-radius: 5px;
+}
+
+.comparison-result {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+.net-income-info {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-top: 20px;
+}
+
+.net-income-info p {
+    margin: 5px 0;
+}
+
+
+
+
+/* Expense Breakdown Card */
+.card.expense-breakdown {
+    background-color: var(--card-bg-light);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card.expense-breakdown h3 {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.expense-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expense-chart {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.expense-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.expense-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.expense-details ul li {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.expense-details .expense-label {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.expense-details ul li:hover {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--primary-color);
+}
