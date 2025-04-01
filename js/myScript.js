@@ -70,7 +70,7 @@ document.addEventListener( "DOMContentLoaded", function () {
 
 
 
-    // ==================== welcome===================
+    // ==================== welcome ===================
 
     // Example Usage
     document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
