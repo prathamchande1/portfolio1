@@ -165,8 +165,85 @@ document.addEventListener( "DOMContentLoaded", function () {
     updateNetIncome(); // Initialize with default value (Previous Month)
 
 
+
+
+
+
+
+    // Function to determine the user's risk profile based on their answers
+    function determineProfile() {
+        // Collecting values from the checkboxes
+        const shortTerm = document.getElementById( 'shortTerm' ).checked;
+        const mediumTerm = document.getElementById( 'mediumTerm' ).checked;
+        const longTerm = document.getElementById( 'longTerm' ).checked;
+
+        const lowRisk = document.getElementById( 'lowRisk' ).checked;
+        const mediumRisk = document.getElementById( 'mediumRisk' ).checked;
+        const highRisk = document.getElementById( 'highRisk' ).checked;
+
+        const lowReturn = document.getElementById( 'lowReturn' ).checked;
+        const mediumReturn = document.getElementById( 'mediumReturn' ).checked;
+        const highReturn = document.getElementById( 'highReturn' ).checked;
+
+        // Defining default profile
+        let profile = "Please answer the questions to get your profile.";
+
+        // Complex profile logic based on all possibilities
+        if ( highRisk && highReturn ) {
+            profile = "You are a High-Risk Profiler with high return expectations.";
+        } else if ( highRisk && mediumReturn ) {
+            profile = "You are a High-Risk Profiler with medium return expectations.";
+        } else if ( highRisk && lowReturn ) {
+            profile = "You are a High-Risk Profiler with low return expectations.";
+        } else if ( mediumRisk && highReturn ) {
+            profile = "You are a Medium-Risk Profiler with high return expectations.";
+        } else if ( mediumRisk && mediumReturn ) {
+            profile = "You are a Medium-Risk Profiler with medium return expectations.";
+        } else if ( mediumRisk && lowReturn ) {
+            profile = "You are a Medium-Risk Profiler with low return expectations.";
+        } else if ( lowRisk && highReturn ) {
+            profile = "You are a Low-Risk Profiler with high return expectations.";
+        } else if ( lowRisk && mediumReturn ) {
+            profile = "You are a Low-Risk Profiler with medium return expectations.";
+        } else if ( lowRisk && lowReturn ) {
+            profile = "You are a Low-Risk Profiler with low return expectations.";
+        } else if ( shortTerm ) {
+            profile = "You have a short-term investment horizon.";
+        } else if ( mediumTerm ) {
+            profile = "You have a medium-term investment horizon.";
+        } else if ( longTerm ) {
+            profile = "You have a long-term investment horizon.";
+        } else {
+            profile = "Please review your answers and make selections.";
+        }
+
+
+        // Updating the profile result section
+        document.getElementById( 'profileHeading' ).innerText = profile;
+        // Show the alert with the profile message
+        showAlert( profile );
+    }
+
+    // // Adding event listeners to checkboxes
+    // const checkboxes = document.querySelectorAll( 'input[type="checkbox"]' );
+    // checkboxes.forEach( checkbox => {
+    //     checkbox.addEventListener( 'change', determineProfile );  // Trigger determineProfile on each checkbox change
+    // } );
+
+    // Trigger the profile determination when the user clicks submit
+    document.getElementById( 'submitBtn' ).addEventListener( 'click', determineProfile );
+
+
+
     //end here
 } );
+
+
+
+
+
+
+
 
 
 // Sample data for ROI calculation over different time periods
@@ -260,3 +337,74 @@ function updateExpenseChart() {
 
 // Initialize the chart
 updateExpenseChart();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Example Data for Top Performing Assets
+const assetsData = [
+    { name: "Tesla", category: "Stock", returnPercent: 120.5, value: 150000 },
+    { name: "Bitcoin", category: "Cryptocurrency", returnPercent: 300.3, value: 500000 },
+    { name: "Apple", category: "Stock", returnPercent: 45.2, value: 250000 },
+    { name: "Gold", category: "Commodity", returnPercent: 10.8, value: 200000 },
+    { name: "Amazon", category: "Stock", returnPercent: 60.7, value: 180000 },
+    { name: "S&P 500 ETF", category: "Index Fund", returnPercent: 18.5, value: 120000 },
+    { name: "Real Estate - NYC Property", category: "Real Estate", returnPercent: 25.1, value: 700000 },
+];
+
+// Function to populate the table with the data
+function populateAssetsTable() {
+    const tableBody = document.querySelector( "#assetsTable tbody" );
+    tableBody.innerHTML = ""; // Clear the table body before adding new rows
+
+    assetsData.forEach( asset => {
+        const row = document.createElement( "tr" );
+
+        // Add Asset Name
+        const nameCell = document.createElement( "td" );
+        nameCell.textContent = asset.name;
+        row.appendChild( nameCell );
+
+        // Add Asset Category
+        const categoryCell = document.createElement( "td" );
+        categoryCell.textContent = asset.category;
+        row.appendChild( categoryCell );
+
+        // Add Return Percentage with color coding
+        const returnCell = document.createElement( "td" );
+        returnCell.textContent = `${asset.returnPercent}%`;
+        returnCell.classList.add( asset.returnPercent > 0 ? "high-return" : "low-return" );
+        row.appendChild( returnCell );
+
+        // Add Asset Value
+        const valueCell = document.createElement( "td" );
+        valueCell.textContent = `Rs ${asset.value.toLocaleString()}`;
+        row.appendChild( valueCell );
+
+        tableBody.appendChild( row );
+    } );
+}
+
+// Call the function to populate the table
+populateAssetsTable();
+
+
+
+
+
+
+
+

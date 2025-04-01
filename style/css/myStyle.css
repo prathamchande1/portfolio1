@@ -580,3 +580,128 @@ canvas {
     font-weight: bold;
     color: var(--primary-color);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Top Performing Assets Card */
+.card.top-performing-assets {
+    background-color: var(--card-bg-light);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card.top-performing-assets h3 {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#assetsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#assetsTable th, #assetsTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#assetsTable th {
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+}
+
+#assetsTable td {
+    background-color: var(--card-bg-light);
+    font-size: 1rem;
+}
+
+#assetsTable tr:hover {
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+#assetsTable .high-return {
+    color: #2ecc71; /* Green for positive returns */
+    font-weight: bold;
+}
+
+#assetsTable .low-return {
+    color: #e74c3c; /* Red for negative returns */
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+/* Risk Assessment Card */
+/* General Card Styling */
+.card {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+}
+
+/* Questionnaire Styling */
+.questionnaire label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.questionnaire div {
+    margin-bottom: 10px;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Profile Result Styling */
+.profile-result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}

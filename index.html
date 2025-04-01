@@ -189,9 +189,100 @@
             </div>
 
 
+
+
+
+            <div class="card top-performing-assets">
+                <h3>Top Performing Assets</h3>
+                <table id="assetsTable">
+                    <thead>
+                        <tr>
+                            <th>Asset Name</th>
+                            <th>Category</th>
+                            <th>Return (%)</th>
+                            <th>Value ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Placeholder for the dynamically generated risk assessment form -->
+            <div class="card risk-assessment">
+                <h3>Risk Assessment</h3>
+                <div class="risk-container">
+                    <div class="questionnaire">
+                        <div class="profile-result">
+                            <h4 id="profileHeading">Please answer the questions to get your profile.</h4>
+                        </div>
+                        <h4>Answer these questions to determine your investment profile:</h4>
+
+                        <label for="investmentHorizon">What is your investment horizon?</label>
+                        <div>
+                            <input type="checkbox" id="shortTerm" value="short">
+                            <label for="shortTerm">Less than 3 years</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="mediumTerm" value="medium">
+                            <label for="mediumTerm">3 - 5 years</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="longTerm" value="long">
+                            <label for="longTerm">More than 5 years</label>
+                        </div>
+
+                        <label for="riskTolerance">How would you describe your risk tolerance?</label>
+                        <div>
+                            <input type="checkbox" id="lowRisk" value="low">
+                            <label for="lowRisk">Low</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="mediumRisk" value="medium">
+                            <label for="mediumRisk">Medium</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="highRisk" value="high">
+                            <label for="highRisk">High</label>
+                        </div>
+
+                        <label for="returnExpectation">What return do you expect from your investments?</label>
+                        <div>
+                            <input type="checkbox" id="lowReturn" value="low">
+                            <label for="lowReturn">Below 5%</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="mediumReturn" value="medium">
+                            <label for="mediumReturn">5% - 10%</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="highReturn" value="high">
+                            <label for="highReturn">Above 10%</label>
+                        </div>
+
+                        <button id="submitBtn">Submit</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+
         </div>
 
         <script type="module" src="./js/myScript.js"></script>
+
 </body>
 
 </html>
