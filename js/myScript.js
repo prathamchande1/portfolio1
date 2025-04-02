@@ -31,6 +31,9 @@ document.addEventListener( "DOMContentLoaded", function () {
         const newTheme = themeSwitch.checked ? "enabled" : "disabled";
         localStorage.setItem( "dark-mode", newTheme );
         applyTheme( newTheme );
+        renderChart(); // Re-render the chart with the updated theme
+        renderChart2(); // Re-render the chart with the updated theme
+
     } );
 
 
@@ -50,9 +53,9 @@ document.addEventListener( "DOMContentLoaded", function () {
     }
 
     // // ==================== fundAccountBtn ===================
-    //     document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
-    //         showAlert( "Funding feature coming soon!" );
-    //     } );
+    document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
+        showAlert( "Funding feature coming soon!" );
+    } );
 
 
 
@@ -72,10 +75,10 @@ document.addEventListener( "DOMContentLoaded", function () {
 
     // ==================== welcome ===================
 
-    // Example Usage
-    document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
-        showAlert( "Funding feature coming soon!" );
-    } );
+    // // Example Usage
+    // document.getElementById( "fundAccountBtn" ).addEventListener( "click", function () {
+    //     showAlert( "Funding feature coming soon!" );
+    // } );
 
     // Function to get and display current date and time
     function displayDateTime() {
@@ -101,16 +104,9 @@ document.addEventListener( "DOMContentLoaded", function () {
         }
     }
 
-    // Function to fetch and display current balance
-    function displayBalance() {
-        // Example: Assuming balance is stored somewhere, for now, we use a static value
-        const currentBalance = 5000.00; // You can replace this with dynamic data from your API
-        document.getElementById( "currentBalance" ).querySelector( "span" ).textContent = `₹ ${currentBalance.toFixed( 2 )}`;
-    }
+
     displayDateTime();
     displayLastLogin();
-    displayBalance();
-    // Update last login time on each login
     localStorage.setItem( 'lastLogin', new Date().toLocaleString() );
 
     // ==================== Net Income Comparison ===================
@@ -516,8 +512,6 @@ document.addEventListener( "DOMContentLoaded", function () {
 
 
 
-
-
     //====================== Top Performing Assets ===================
     // Example Data for Top Performing Assets
     const assetsData = [
@@ -580,12 +574,103 @@ document.addEventListener( "DOMContentLoaded", function () {
 
 
 
+    //======================== Assets allocation ==============================
+    function explodePie( e ) {
+        if ( typeof ( e.dataSeries.dataPoints[e.dataPointIndex].exploded ) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded ) {
+            e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+        } else {
+            e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+        }
+        e.chart.render();
+    }
+    function renderChart() {
+        // Check if dark mode is enabled
+        const isDarkMode = localStorage.getItem( "dark-mode" ) === "enabled"; // Example: Using localStorage
+        const bgColor = isDarkMode ? "#0a101f" : "#ffffff"; // Dark mode (Gray) / Light mode (White)
+        const textColor = isDarkMode ? "#ffffff" : "#000000"; // Text color (White/Black)
 
+        var chart = new CanvasJS.Chart( "chartContainer", {
+            backgroundColor: bgColor, // Dynamic background color
+            theme: isDarkMode ? "dark1" : "light1", // Change chart theme
+            exportFileName: "Asset Allocation",
+            exportEnabled: true,
+            animationEnabled: true,
+            title: {
+                text: "Asset Allocation",
+                fontColor: textColor // Dynamic text color
+            },
+            legend: {
+                cursor: "pointer",
+                itemclick: explodePie,
+                fontColor: textColor // Dynamic legend color
+            },
+            data: [{
+                type: "doughnut",
+                innerRadius: 90,
+                showInLegend: true,
+                toolTipContent: "<b>{name}</b>: {y}%",
+                indexLabel: "{name} - {y}%",
+                indexLabelFontColor: textColor, // Labels inside chart color
+                dataPoints: [
+                    { y: 40, name: "Stocks", color: "#DF4C25" },      // Green
+                    { y: 20, name: "Bonds", color: "#002060" },       // Orange
+                    { y: 15, name: "Real Estate", color: "#EF9337" }, // Blue
+                    { y: 10, name: "Gold", color: "#3C8DE0" },        // Yellow
+                    { y: 15, name: "Mutual Funds", color: "#3b2774" } // Purple
+                ]
+            }]
+        } );
+        chart.render();
+    }
+    renderChart();
 
+    function renderChart2() {
+        // Check if dark mode is enabled
+        const isDarkMode = localStorage.getItem( "dark-mode" ) === "enabled"; // Example: Using localStorage
 
+        const bgColor = isDarkMode ? "#0a101f" : "#ffffff";
+        const textColor = isDarkMode ? "#ffffff" : "#000000";
 
+        var chart = new CanvasJS.Chart( "chartContainer2", {
+            backgroundColor: bgColor,
+            exportEnabled: true,
+            animationEnabled: true,
+            theme: isDarkMode ? "dark1" : "light1",
+            title: {
+                text: "Monthly Expense Breakdown",
+                fontColor: textColor
+            },
+            legend: {
+                cursor: "pointer",
+                itemclick: explodePie,
+                fontColor: textColor
+            },
+            data: [{
+                type: "pie",
+                showInLegend: true,
+                toolTipContent: "{name}: <strong>{y}%</strong>",
+                indexLabel: "{name} - {y}%",
+                indexLabelFontColor: textColor,
+                dataPoints: [
+                    { y: 20, name: "Rent", exploded: true, color: "#FF5733" },
+                    { y: 15, name: "Groceries", color: "#33FF57" },
+                    { y: 10, name: "Transportation", color: "#5733FF" },
+                    { y: 10, name: "Dining Out", color: "#FF33A8" },
+                    { y: 10, name: "Entertainment", color: "#FFD700" },
+                    { y: 10, name: "Healthcare", color: "#00CED1" },
+                    { y: 5, name: "Education", color: "#FF4500" },
+                    { y: 5, name: "Subscriptions", color: "#9370DB" },
+                    { y: 5, name: "Shopping", color: "#20B2AA" },
+                    { y: 10, name: "Savings", color: "#708090" }
+                ]
+            }]
+        } );
+        chart.render();
+    }
+    renderChart2();
     //end here
 } );
+
 
 
 

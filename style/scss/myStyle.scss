@@ -265,9 +265,14 @@ a {
 
 
                     .accountBalance {
+                        margin-top: 40px;
+
                         .balance {}
 
-                        .change {}
+                        .change {
+                            color: green;
+                            font-size: 14px;
+                        }
                     }
 
                     .transaction-card {
@@ -604,38 +609,59 @@ a {
                 gap: 40px;
                 margin-top: 20px;
                 display: flex;
-                flex-flow: column;
+                flex-flow: row wrap;
+                align-items: flex-start;
+
+                @media screen and (max-width:768px) {
+                    flex-flow: wrap;
+
+                }
 
                 // =================  card  ====================
 
                 .card {
                     background: var(--card-bg-light);
-                    padding: 20px;
+                    padding: 32px;
                     border-radius: 10px;
                     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                     transition: 0.3s;
                     overflow: hidden;
+                    overflow-x: auto;
                     border: 1px solid #dfdfdf;
-                    // &:hover {
-                    //     transform: translateY(-5px);
-                    //     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 
-                    // }
+
+                    h2 {
+                        margin-bottom: 20px;
+                        font-size: var(--font32);
+                        font-weight: 600;
+                    }
 
                     h3 {
-                        font-size: 18px;
+                        margin-bottom: 20px;
+                        font-size: var(--font24);
+                        font-weight: 600;
                     }
+
 
                     p {
                         font-size: 16px;
                         color: var(--primary-dark);
+                        margin-top: 12px;
                     }
 
                     &.welcome {
                         // background: var(--primary-color);
                         // color: white;
                         text-align: center;
+                        display: flex;
+                        flex-flow: column;
+                        justify-content: space-between;
+                        align-items: center;
 
+                        h4 {
+                            text-align: left;
+                            margin-bottom: 20px;
+                        }
 
                     }
                 }
@@ -666,6 +692,7 @@ a {
                 // ================= accountBalance   ====================
 
                 .accountBalance {
+                    margin-top: 40px;
 
                     .balance {
                         font-size: 24px;
@@ -685,12 +712,14 @@ a {
                 // =================   Asset Allocation ====================
 
                 .asset-allocation {
-                    background: var(--card-bg-light);
-                    padding: 25px;
-                    border-radius: 15px;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                    text-align: center;
-                    transition: all 0.3s ease-in-out;
+                    // background: var(--card-bg-light);
+                    // padding: 25px;
+                    // border-radius: 15px;
+                    // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    // text-align: center;
+                    // transition: all 0.3s ease-in-out;
+                    max-width: 500px;
+                    width: 100%;
 
                     &:hover {
                         // transform: translateY(-5px);
@@ -710,7 +739,11 @@ a {
                 }
 
 
-
+                //=========================expense-breakdown========================
+                .expense-breakdown {
+                    max-width: 500px;
+                    width: 100%;
+                }
 
                 // ================= transaction-card   ====================
 
