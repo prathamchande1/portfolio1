@@ -11,9 +11,10 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
     <!-- Resources -->
-    <!-- <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script> -->
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 </head>
 
@@ -118,11 +119,25 @@
                     </div>
                 </div>
 
+                <!-- ----------------------------    top-performing-assets   --------------------------------------- -->
 
-
-                <!-- ----------------------------   accountBalance    --------------------------------------- -->
-
-
+                <div class="card topStock">
+                    <h3>Top Performing Assets</h3>
+                    <div id="chartdiv"></div>
+                    <table id="assetsTable">
+                        <thead>
+                            <tr>
+                                <th>Asset Name</th>
+                                <th>Category</th>
+                                <th>Return (%)</th>
+                                <th>Value ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Table rows will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
 
 
                 <!-- ----------------------------    roi   --------------------------------------- -->
@@ -198,25 +213,6 @@
                     </div>
                 </div>
 
-
-                <!-- ----------------------------    top-performing-assets   --------------------------------------- -->
-
-                <div class="card top-performing-assets">
-                    <h3>Top Performing Assets</h3>
-                    <table id="assetsTable">
-                        <thead>
-                            <tr>
-                                <th>Asset Name</th>
-                                <th>Category</th>
-                                <th>Return (%)</th>
-                                <th>Value ($)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Table rows will be populated dynamically -->
-                        </tbody>
-                    </table>
-                </div>
 
                 <!-- ----------------------------    risk-assessment   --------------------------------------- -->
                 <div class="card risk-assessment">
@@ -315,7 +311,6 @@
                         <p><strong>Tax Saved (if applicable):</strong> ₹<span id="taxSaved"></span></p>
                     </div>
                 </div>
-
 
 
 
